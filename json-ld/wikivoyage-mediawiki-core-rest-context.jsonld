@@ -1,0 +1,195 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wm": "https://wikimedia.org/api/vocab/",
+    "wd": "https://www.wikidata.org/entity/",
+    "wdt": "https://www.wikidata.org/prop/direct/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "from": {
+      "@id": "wm:from"
+    },
+    "to": {
+      "@id": "wm:to"
+    },
+    "diff": {
+      "@id": "wm:diff",
+      "@container": "@set"
+    },
+    "type": {
+      "@id": "wm:type",
+      "@type": "xsd:integer"
+    },
+    "lineNumber": {
+      "@id": "wm:lineNumber",
+      "@type": "xsd:integer"
+    },
+    "text": {
+      "@id": "wm:text",
+      "@type": "xsd:string"
+    },
+    "offset": {
+      "@id": "wm:offset",
+      "@type": "@id"
+    },
+    "highlightRanges": {
+      "@id": "wm:highlightRanges",
+      "@container": "@set"
+    },
+    "source": {
+      "@id": "wm:source",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "comment": {
+      "@id": "wm:comment",
+      "@type": "xsd:string"
+    },
+    "contentModel": {
+      "@id": "wm:content_model",
+      "@type": "xsd:string"
+    },
+    "token": {
+      "@id": "wm:token",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "wm:count",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "wm:limit",
+      "@type": "xsd:boolean"
+    },
+    "fileDescriptionUrl": {
+      "@id": "wm:file_description_url"
+    },
+    "latest": {
+      "@id": "wm:latest",
+      "@type": "@id"
+    },
+    "timestamp": {
+      "@id": "wm:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "user": {
+      "@id": "wm:user",
+      "@type": "@id"
+    },
+    "id": {
+      "@id": "wm:id",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "preferred": {
+      "@id": "wm:preferred",
+      "@type": "@id"
+    },
+    "mediatype": {
+      "@id": "wm:mediatype",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "wm:size",
+      "@type": "xsd:integer"
+    },
+    "width": {
+      "@id": "wm:width",
+      "@type": "xsd:integer"
+    },
+    "height": {
+      "@id": "wm:height",
+      "@type": "xsd:integer"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "original": {
+      "@id": "wm:original",
+      "@type": "@id"
+    },
+    "revisions": {
+      "@id": "wm:revisions",
+      "@container": "@set"
+    },
+    "older": {
+      "@id": "wm:older"
+    },
+    "newer": {
+      "@id": "wm:newer"
+    },
+    "code": {
+      "@id": "wm:code",
+      "@type": "xsd:string"
+    },
+    "key": {
+      "@id": "wm:key",
+      "@type": "xsd:string"
+    },
+    "license": {
+      "@id": "wm:license",
+      "@type": "@id"
+    },
+    "htmlUrl": {
+      "@id": "wm:html_url"
+    },
+    "html": {
+      "@id": "wm:html",
+      "@type": "xsd:string"
+    },
+    "page": {
+      "@id": "wm:page",
+      "@type": "@id"
+    },
+    "minor": {
+      "@id": "wm:minor",
+      "@type": "xsd:boolean"
+    },
+    "delta": {
+      "@id": "wm:delta",
+      "@type": "xsd:integer"
+    },
+    "pages": {
+      "@id": "wm:pages",
+      "@container": "@set"
+    },
+    "excerpt": {
+      "@id": "wm:excerpt",
+      "@type": "xsd:string"
+    },
+    "matchedTitle": {
+      "@id": "wm:matched_title",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "thumbnail": {
+      "@id": "wm:thumbnail",
+      "@type": "@id"
+    },
+    "mimetype": {
+      "@id": "wm:mimetype",
+      "@type": "xsd:string"
+    },
+    "CompareResponse": "wm:CompareResponse",
+    "CreatePageRequest": "wm:CreatePageRequest",
+    "EditCounts": "wm:EditCounts",
+    "File": "wm:File",
+    "HistoryResponse": "wm:HistoryResponse",
+    "LanguageLink": "wm:LanguageLink",
+    "Page": "wm:Page",
+    "Revision": "wm:Revision",
+    "SearchResponse": "wm:SearchResponse",
+    "SearchResult": "wm:SearchResult",
+    "UpdatePageRequest": "wm:UpdatePageRequest"
+  }
+}

@@ -1,0 +1,357 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Action API
+  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage,
+    exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action=
+    query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended
+    format.
+
+
+    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval
+    of travel destination articles, accommodation listings, sightseeing information, and
+    practical travel advice. Supports both anonymous reads and authenticated writes via
+    OAuth 2.0.
+
+
+    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial
+    (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  version: '1.47'
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+tags:
+- name: Query
+  description: Read-only data retrieval (action=query) — travel articles, revisions, links, search
+- name: Parse
+  description: Wikitext parsing (action=parse) for travel article content
+- name: Edit
+  description: Create/modify travel guide content (action=edit)
+- name: Authentication
+  description: Login, logout, token retrieval (action=login, clientlogin, logout, query&meta=tokens)
+- name: Upload
+  description: File upload (action=upload)
+- name: Patrol
+  description: Mark edits as patrolled (action=patrol)
+- name: Meta
+  description: Metadata operations (action=opensearch, action=feedrecentchanges)
+paths:
+  /api.php:
+    get:
+      operationId: callActionApiGet
+      summary: Wikivoyage MediaWiki Action API Dispatch (GET)
+      description: Generic dispatch endpoint for read operations on Wikivoyage travel content.
+        Use ?action=query for data retrieval, ?action=parse to parse wikitext travel articles,
+        ?action=opensearch for destination auto-complete. Always include format=json. Combine
+        multiple titles with the pipe character (titles=Paris|Rome|Tokyo). Use the maxlag
+        parameter for non-interactive jobs.
+      tags:
+      - Query
+      - Parse
+      - Meta
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - query
+          - parse
+          - opensearch
+          - feedrecentchanges
+          - feedcontributions
+          - feedwatchlist
+          - sitematrix
+          - compare
+          - expandtemplates
+          - help
+          - paraminfo
+          - rsd
+          example: query
+        description: API action to dispatch
+      - name: format
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - jsonfm
+          - xml
+          - xmlfm
+          - php
+          - rawfm
+          - none
+          default: json
+        description: Response format. Always use json.
+      - name: titles
+        in: query
+        schema:
+          type: string
+        description: Pipe-separated list of travel destination article titles
+        example: Paris|Rome|Tokyo
+      - name: pageids
+        in: query
+        schema:
+          type: string
+        description: Pipe-separated list of page IDs
+      - name: prop
+        in: query
+        schema:
+          type: string
+        description: Properties to fetch (info|revisions|links|categories|images|extracts|...)
+        example: info|revisions
+      - name: list
+        in: query
+        schema:
+          type: string
+        description: List generators (allpages|search|recentchanges|categorymembers|...)
+      - name: meta
+        in: query
+        schema:
+          type: string
+        description: Meta queries (siteinfo|userinfo|tokens|...)
+        example: tokens
+      - name: maxlag
+        in: query
+        schema:
+          type: integer
+        description: Maximum replication lag in seconds before the request is rejected. Required for bots.
+        example: 5
+      - name: smaxage
+        in: query
+        schema:
+          type: integer
+        description: Shared-cache max-age in seconds
+      - name: maxage
+        in: query
+        schema:
+          type: integer
+        description: Cache max-age in seconds
+      responses:
+        '200':
+          description: Action result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+        '429':
+          description: Rate limited - retry with exponential backoff
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: callActionApiPost
+      summary: Wikivoyage MediaWiki Action API Dispatch (POST)
+      description: Generic dispatch endpoint for write operations on Wikivoyage. Use ?action=edit
+        to create/modify travel guide articles, ?action=upload for images, ?action=login or
+        ?action=clientlogin to authenticate. All write operations require a CSRF token from
+        action=query&meta=tokens. POSTs are not cached - use them for writes only.
+      tags:
+      - Edit
+      - Upload
+      - Authentication
+      - Patrol
+      parameters:
+      - name: action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - edit
+          - upload
+          - login
+          - clientlogin
+          - logout
+          - patrol
+          - rollback
+          - move
+          - delete
+          - protect
+          - block
+          - unblock
+          - thank
+          - createaccount
+          - emailuser
+          - managetags
+          - tag
+          - options
+          example: edit
+      - name: format
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - jsonfm
+          - xml
+          - xmlfm
+          default: json
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ActionApiWriteRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ActionApiWriteRequest'
+            description: Use multipart for action=upload
+      responses:
+        '200':
+          description: Action result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActionResult'
+        '401':
+          description: Authentication required or invalid token
+        '403':
+          description: Permission denied
+        '429':
+          description: Rate limited
+      security:
+      - BearerAuth: []
+      - CookieAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token from meta.wikimedia.org
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: wikivoyagewikiUserID
+      description: Session cookie obtained via action=login or action=clientlogin
+  schemas:
+    ActionResult:
+      type: object
+      description: Generic envelope for Action API responses. Concrete payload shape depends
+        on action and prop/list/meta selection.
+      properties:
+        batchcomplete:
+          type: string
+          description: Present when the batch completed in one round-trip
+        continue:
+          type: object
+          description: Continuation tokens for paginated responses
+        query:
+          type: object
+          description: Result body for action=query
+        parse:
+          type: object
+          description: Result body for action=parse
+        edit:
+          type: object
+          description: Result body for action=edit
+        login:
+          type: object
+          description: Result body for action=login
+        error:
+          $ref: '#/components/schemas/ActionApiError'
+        warnings:
+          type: object
+    ActionApiWriteRequest:
+      type: object
+      required:
+      - token
+      properties:
+        title:
+          type: string
+          description: Travel article title for edit/move/delete/protect
+        pageid:
+          type: integer
+          description: Alternative to title
+        text:
+          type: string
+          description: Full wikitext content for action=edit
+        appendtext:
+          type: string
+        prependtext:
+          type: string
+        summary:
+          type: string
+          description: Edit summary
+        token:
+          type: string
+          description: CSRF token from query&meta=tokens
+        basetimestamp:
+          type: string
+          format: date-time
+          description: Timestamp of base revision for edit conflict detection
+        starttimestamp:
+          type: string
+          format: date-time
+        bot:
+          type: boolean
+          description: Mark as bot edit (requires bot right)
+        minor:
+          type: boolean
+        recreate:
+          type: boolean
+        createonly:
+          type: boolean
+        nocreate:
+          type: boolean
+        lgname:
+          type: string
+          description: Login username (action=login)
+        lgpassword:
+          type: string
+          description: Login password (action=login)
+        lgtoken:
+          type: string
+          description: Login token
+        filename:
+          type: string
+          description: Destination filename for action=upload
+        file:
+          type: string
+          format: binary
+          description: File contents for action=upload (multipart)
+        url:
+          type: string
+          format: uri
+          description: Source URL for action=upload (sideload)
+        comment:
+          type: string
+          description: Upload comment
+        tags:
+          type: string
+          description: Pipe-separated change tags
+    ActionApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: ratelimited
+        info:
+          type: string
+          description: Human-readable error description
+        '*':
+          type: string
+          description: Legacy error text
+        docref:
+          type: string
+          description: Pointer to docs for this error class

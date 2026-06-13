@@ -1,0 +1,1088 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Core REST API
+  description: 'MediaWiki Core REST API exposed by Wikivoyage under /w/rest.php/v1/. Provides
+    travel article CRUD, full-text search, file metadata, revision history, and content
+    transforms for wikitext and HTML. Wikivoyage is the free, collaboratively written
+    travel guide operated by the Wikimedia Foundation, covering travel destinations worldwide
+    with articles on accommodation, sightseeing, local transport, and practical travel advice.
+
+
+    The same surface is also mirrored at api.wikimedia.org/core/v1/wikivoyage/{lang}/ for
+    centralized access across Wikimedia projects.
+
+
+    All endpoints require a meaningful User-Agent header identifying your application and
+    a contact address. Write endpoints require OAuth 2.0 authentication.'
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:REST_API/Reference
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://api.wikimedia.org/wiki/Core_REST_API
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w/rest.php/v1
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w/rest.php/v1
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language subdomain (en, de, fr, es, it, pt, ru, zh, ...)
+- url: https://api.wikimedia.org/core/v1/wikivoyage/{lang}
+  description: Wikimedia API Gateway equivalent of the Core REST API
+  variables:
+    lang:
+      default: en
+      description: Language code
+tags:
+- name: Pages
+  description: Travel article metadata, HTML, source, create, update
+- name: Search
+  description: Title and full-text search across Wikivoyage travel articles
+- name: Files
+  description: Media file metadata for travel images and maps
+- name: History
+  description: Travel article revision history and edit statistics
+- name: Revisions
+  description: Individual revision retrieval and comparison
+- name: Transforms
+  description: Wikitext <-> HTML transformation for travel content
+- name: Links
+  description: Page relationships — language editions and media links
+paths:
+  /page/{title}:
+    get:
+      operationId: getPage
+      summary: Wikivoyage Core REST Get Travel Article Source and Metadata
+      description: Retrieve a Wikivoyage travel article including its wikitext source and metadata.
+        Returns the article's current revision along with page ID, title, license, and a link
+        to the rendered HTML version.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - &id001
+        name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      - name: redirect
+        in: query
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - 'no'
+        description: Whether to resolve redirects
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updatePage
+      summary: Wikivoyage Core REST Update or Create a Travel Article
+      description: Update an existing Wikivoyage travel article, or create one if it does not
+        exist. Uses optimistic concurrency via latest.id to prevent edit conflicts.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePageRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - BearerAuth: []
+  /page/{title}/bare:
+    get:
+      operationId: getPageBare
+      summary: Wikivoyage Core REST Get Travel Article Metadata Without Content
+      description: Retrieve metadata about a travel article including a link to its rendered HTML,
+        without fetching the full content.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /page/{title}/html:
+    get:
+      operationId: getPageHtml
+      summary: Wikivoyage Core REST Get Travel Article as HTML
+      description: Retrieve the rendered HTML for a Wikivoyage travel article destination page.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Rendered HTML travel article
+          content:
+            text/html:
+              schema:
+                type: string
+  /page/{title}/with_html:
+    get:
+      operationId: getPageWithHtml
+      summary: Wikivoyage Core REST Get Travel Article Metadata and HTML
+      description: Retrieve travel article metadata together with rendered HTML in a single
+        response. Useful for building travel apps that need both structured metadata and
+        rendered content.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /page:
+    post:
+      operationId: createPage
+      summary: Wikivoyage Core REST Create a New Travel Article
+      description: Create a new Wikivoyage travel guide article. Requires OAuth bearer token.
+      tags:
+      - Pages
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePageRequest'
+      responses:
+        '201':
+          description: Travel article created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+      security:
+      - BearerAuth: []
+  /search/page:
+    get:
+      operationId: searchPages
+      summary: Wikivoyage Core REST Full-Text Search Travel Articles
+      description: Full-text search of Wikivoyage travel article titles and contents.
+        Supports keyword queries across all destination guides, accommodation listings,
+        sightseeing information, and practical travel advice.
+      tags:
+      - Search
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query for travel destinations or topics
+        example: Paris restaurants
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+        description: Result count limit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /search/title:
+    get:
+      operationId: searchTitles
+      summary: Wikivoyage Core REST Autocomplete Destination Title Search
+      description: Auto-complete search of Wikivoyage travel article titles by prefix match.
+        Useful for building destination lookup interfaces and travel search apps.
+      tags:
+      - Search
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Destination title prefix for autocomplete
+        example: Par
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+        description: Result count limit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /file/{title}:
+    get:
+      operationId: getFile
+      summary: Wikivoyage Core REST Get Travel Image File Metadata
+      description: Retrieve metadata for a media file used in Wikivoyage, including download
+        URLs at multiple sizes. Travel images are hosted on Wikimedia Commons.
+      tags:
+      - Files
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        example: File:Paris_banner_Sacre-Coeur.jpg
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /page/{title}/history:
+    get:
+      operationId: getPageHistory
+      summary: Wikivoyage Core REST Get Travel Article Revision History
+      description: Retrieve the full revision history for a Wikivoyage travel article, enabling
+        tracking of how travel information evolves over time.
+      tags:
+      - History
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      - name: older_than
+        in: query
+        schema:
+          type: integer
+        description: Return revisions older than this ID
+      - name: newer_than
+        in: query
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        schema:
+          type: string
+          enum:
+          - reverted
+          - anonymous
+          - bot
+          - minor
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /page/{title}/history/counts/{type}:
+    get:
+      operationId: getPageHistoryCounts
+      summary: Wikivoyage Core REST Get Edit Statistics for a Travel Article
+      description: Get edit count statistics for a Wikivoyage travel article by category.
+      tags:
+      - History
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - anonymous
+          - bot
+          - editors
+          - edits
+          - minor
+          - reverted
+        description: Type of count to return
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditCounts'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}:
+    get:
+      operationId: getRevision
+      summary: Wikivoyage Core REST Get Revision with HTML Link
+      description: Retrieve a specific revision of a Wikivoyage travel article and a link
+        to its rendered HTML.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/bare:
+    get:
+      operationId: getRevisionBare
+      summary: Wikivoyage Core REST Get Revision Metadata
+      description: Retrieve revision metadata without source or HTML content.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/source:
+    get:
+      operationId: getRevisionSource
+      summary: Wikivoyage Core REST Get Revision Wikitext Source
+      description: Retrieve the wikitext source for a specific revision of a travel article.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/html:
+    get:
+      operationId: getRevisionHtml
+      summary: Wikivoyage Core REST Get Revision as HTML
+      description: Retrieve the rendered HTML for a specific revision of a Wikivoyage travel
+        article.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: HTML for the revision
+          content:
+            text/html:
+              schema:
+                type: string
+  /revision/{id}/with_html:
+    get:
+      operationId: getRevisionWithHtml
+      summary: Wikivoyage Core REST Get Revision Metadata and HTML
+      description: Retrieve revision metadata together with rendered HTML for a travel article
+        revision.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{from}/compare/{to}:
+    post:
+      operationId: compareRevisions
+      summary: Wikivoyage Core REST Compare Two Travel Article Revisions
+      description: Produce a structured diff between two revisions of a Wikivoyage travel
+        article to track changes in travel information over time.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: from
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: From revision ID
+      - name: to
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: To revision ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompareResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /transform/wikitext/to/html/{title}:
+    post:
+      operationId: transformWikitextToHtml
+      summary: Wikivoyage Core REST Transform Wikitext to HTML
+      description: Convert Wikivoyage wikitext into rendered HTML in the context of a given
+        travel article title. Enables custom rendering of travel content.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - wikitext
+              properties:
+                wikitext:
+                  type: string
+                  example: "'''Paris''' is the capital of France."
+                body_only:
+                  type: boolean
+      responses:
+        '200':
+          description: HTML output
+          content:
+            text/html:
+              schema:
+                type: string
+  /transform/html/to/wikitext/{title}:
+    post:
+      operationId: transformHtmlToWikitext
+      summary: Wikivoyage Core REST Transform HTML to Wikitext
+      description: Convert HTML into Wikivoyage wikitext in the context of a given travel
+        article title.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - html
+              properties:
+                html:
+                  type: string
+                body_only:
+                  type: boolean
+      responses:
+        '200':
+          description: Wikitext output
+          content:
+            text/plain:
+              schema:
+                type: string
+  /transform/wikitext/to/lint/{title}:
+    post:
+      operationId: transformWikitextToLint
+      summary: Wikivoyage Core REST Lint Wikitext for Errors
+      description: Identify lint errors in Wikivoyage wikitext (e.g. broken HTML, deprecated
+        syntax). Useful for validating travel article edits before submission.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - wikitext
+              properties:
+                wikitext:
+                  type: string
+      responses:
+        '200':
+          description: List of lint errors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /page/{title}/links/language:
+    get:
+      operationId: getPageLanguageLinks
+      summary: Wikivoyage Core REST Get Language Links for a Travel Article
+      description: Return interlanguage links (same destination article in other language
+        editions of Wikivoyage) for a given travel article. Useful for multi-language travel
+        apps.
+      tags:
+      - Links
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Language links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LanguageLink'
+  /page/{title}/links/media:
+    get:
+      operationId: getPageMediaLinks
+      summary: Wikivoyage Core REST Get Media Files Used in a Travel Article
+      description: List travel images, maps, and other media files referenced from a Wikivoyage
+        article.
+      tags:
+      - Links
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - *id001
+      responses:
+        '200':
+          description: Files used in the travel article
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/File'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token issued via api.wikimedia.org. Required for write
+        operations on Wikivoyage travel articles.
+  schemas:
+    Page:
+      type: object
+      description: A Wikivoyage travel article page object.
+      properties:
+        id:
+          type: integer
+          example: 12345
+          description: Page ID
+        key:
+          type: string
+          example: Paris
+          description: Page DB key (URL form)
+        title:
+          type: string
+          example: Paris
+          description: Display title of travel destination
+        latest:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 5234567
+              description: Revision ID
+            timestamp:
+              type: string
+              format: date-time
+              example: '2026-06-13T10:00:00Z'
+        content_model:
+          type: string
+          example: wikitext
+        license:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+              example: https://creativecommons.org/licenses/by-sa/4.0/
+            title:
+              type: string
+              example: Creative Commons Attribution-Share Alike 4.0
+        html_url:
+          type: string
+          format: uri
+        source:
+          type: string
+          description: Travel article wikitext source
+        html:
+          type: string
+          description: Rendered HTML of travel article
+    Revision:
+      type: object
+      description: A travel article revision.
+      properties:
+        id:
+          type: integer
+          example: 5234567
+        page:
+          type: object
+          properties:
+            id:
+              type: integer
+            title:
+              type: string
+        size:
+          type: integer
+          description: Byte size of revision
+        minor:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        content_model:
+          type: string
+          example: wikitext
+        license:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            title:
+              type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              example: TravelContributor
+        comment:
+          type: string
+          description: Edit summary
+        delta:
+          type: integer
+          description: Byte delta from previous revision
+    SearchResult:
+      type: object
+      description: A search result travel article entry.
+      properties:
+        id:
+          type: integer
+        key:
+          type: string
+        title:
+          type: string
+        excerpt:
+          type: string
+          description: HTML snippet with search match highlights
+        matched_title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        thumbnail:
+          type: object
+          nullable: true
+          properties:
+            url:
+              type: string
+              format: uri
+            width:
+              type: integer
+            height:
+              type: integer
+            mimetype:
+              type: string
+              example: image/jpeg
+    SearchResponse:
+      type: object
+      properties:
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    File:
+      type: object
+      description: A travel image or map file descriptor.
+      properties:
+        title:
+          type: string
+          example: File:Paris_banner_Sacre-Coeur.jpg
+        file_description_url:
+          type: string
+          format: uri
+        latest:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            user:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+        preferred:
+          type: object
+          properties:
+            mediatype:
+              type: string
+              example: BITMAP
+            size:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            url:
+              type: string
+              format: uri
+        original:
+          type: object
+          properties:
+            mediatype:
+              type: string
+            size:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            url:
+              type: string
+              format: uri
+    HistoryResponse:
+      type: object
+      properties:
+        revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        latest:
+          type: string
+          format: uri
+          description: Link to latest revisions page
+        older:
+          type: string
+          format: uri
+          nullable: true
+        newer:
+          type: string
+          format: uri
+          nullable: true
+    EditCounts:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Edit count of requested type
+        limit:
+          type: boolean
+          description: Whether the count was truncated
+    LanguageLink:
+      type: object
+      properties:
+        code:
+          type: string
+          example: de
+          description: Language code for Wikivoyage edition
+        name:
+          type: string
+          example: Deutsch
+        key:
+          type: string
+          example: Paris
+        title:
+          type: string
+          example: Paris
+    CompareResponse:
+      type: object
+      description: Comparison between two travel article revisions.
+      properties:
+        from:
+          $ref: '#/components/schemas/Revision'
+        to:
+          $ref: '#/components/schemas/Revision'
+        diff:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: integer
+                description: 0 context, 1 add line, 2 delete line, 3 in-line change, 4 moved paragraph, 5 paragraph moved into place
+              lineNumber:
+                type: integer
+              text:
+                type: string
+              offset:
+                type: object
+                properties:
+                  from:
+                    type: integer
+                  to:
+                    type: integer
+              highlightRanges:
+                type: array
+                items:
+                  type: object
+    CreatePageRequest:
+      type: object
+      required:
+      - source
+      - title
+      - comment
+      properties:
+        source:
+          type: string
+          description: Wikitext source for the new travel article
+          example: "'''Paris''' is the capital city of [[France]]."
+        title:
+          type: string
+          description: New travel article title
+          example: Paris/Montmartre
+        comment:
+          type: string
+          description: Edit summary
+          example: Creating new district article for Montmartre
+        content_model:
+          type: string
+          example: wikitext
+        token:
+          type: string
+          description: CSRF token from Action API
+    UpdatePageRequest:
+      type: object
+      required:
+      - source
+      - comment
+      properties:
+        source:
+          type: string
+          description: Updated wikitext source for the travel article
+        comment:
+          type: string
+          description: Edit summary describing the travel information update
+        content_model:
+          type: string
+          example: wikitext
+        latest:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Latest revision ID for optimistic concurrency
+        token:
+          type: string
+          description: CSRF token from Action API
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object

@@ -1,0 +1,147 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wm": "https://wikimedia.org/api/vocab/",
+    "wd": "https://www.wikidata.org/entity/",
+    "wdt": "https://www.wikidata.org/prop/direct/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "code": {
+      "@id": "wm:code",
+      "@type": "xsd:string"
+    },
+    "info": {
+      "@id": "wm:info",
+      "@type": "xsd:string"
+    },
+    "*": {
+      "@id": "wm:*",
+      "@type": "xsd:string"
+    },
+    "docref": {
+      "@id": "wm:docref",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "pageid": {
+      "@id": "wm:pageid",
+      "@type": "xsd:integer"
+    },
+    "text": {
+      "@id": "wm:text",
+      "@type": "xsd:string"
+    },
+    "appendtext": {
+      "@id": "wm:appendtext",
+      "@type": "xsd:string"
+    },
+    "prependtext": {
+      "@id": "wm:prependtext",
+      "@type": "xsd:string"
+    },
+    "summary": {
+      "@id": "wm:summary",
+      "@type": "xsd:string"
+    },
+    "token": {
+      "@id": "wm:token",
+      "@type": "xsd:string"
+    },
+    "basetimestamp": {
+      "@id": "wm:basetimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "starttimestamp": {
+      "@id": "wm:starttimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "bot": {
+      "@id": "wm:bot",
+      "@type": "xsd:boolean"
+    },
+    "minor": {
+      "@id": "wm:minor",
+      "@type": "xsd:boolean"
+    },
+    "recreate": {
+      "@id": "wm:recreate",
+      "@type": "xsd:boolean"
+    },
+    "createonly": {
+      "@id": "wm:createonly",
+      "@type": "xsd:boolean"
+    },
+    "nocreate": {
+      "@id": "wm:nocreate",
+      "@type": "xsd:boolean"
+    },
+    "lgname": {
+      "@id": "wm:lgname",
+      "@type": "xsd:string"
+    },
+    "lgpassword": {
+      "@id": "wm:lgpassword",
+      "@type": "xsd:string"
+    },
+    "lgtoken": {
+      "@id": "wm:lgtoken",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "wm:filename",
+      "@type": "xsd:string"
+    },
+    "file": {
+      "@id": "wm:file"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "comment": {
+      "@id": "wm:comment",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "wm:tags",
+      "@type": "xsd:string"
+    },
+    "batchcomplete": {
+      "@id": "wm:batchcomplete",
+      "@type": "xsd:string"
+    },
+    "continue": {
+      "@id": "wm:continue",
+      "@type": "@id"
+    },
+    "query": {
+      "@id": "wm:query",
+      "@type": "@id"
+    },
+    "parse": {
+      "@id": "wm:parse",
+      "@type": "@id"
+    },
+    "edit": {
+      "@id": "wm:edit",
+      "@type": "@id"
+    },
+    "login": {
+      "@id": "wm:login",
+      "@type": "@id"
+    },
+    "error": {
+      "@id": "wm:error"
+    },
+    "warnings": {
+      "@id": "wm:warnings",
+      "@type": "@id"
+    },
+    "ActionApiError": "wm:ActionApiError",
+    "ActionApiWriteRequest": "wm:ActionApiWriteRequest",
+    "ActionResult": "wm:ActionResult"
+  }
+}

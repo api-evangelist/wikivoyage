@@ -55,6 +55,10 @@ apis:
         url: https://www.mediawiki.org/wiki/API:Tutorial
       - type: Etiquette
         url: https://www.mediawiki.org/wiki/API:Etiquette
+      - type: OpenAPI
+        url: openapi/wikivoyage-mediawiki-action-api-openapi.yaml
+      - type: JSONLDContext
+        url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
 
   - name: Wikivoyage MediaWiki Core REST API
     description: >-
@@ -79,6 +83,10 @@ apis:
         url: https://api.wikimedia.org/wiki/Core_REST_API
       - type: Sandbox
         url: https://en.wikivoyage.org/wiki/Special:RestSandbox
+      - type: OpenAPI
+        url: openapi/wikivoyage-mediawiki-core-rest-openapi.yaml
+      - type: JSONLDContext
+        url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
 
 common:
   - type: Website
