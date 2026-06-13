@@ -1,0 +1,184 @@
+aid: wikivoyage
+name: Wikivoyage
+description: >-
+  Wikivoyage is the free, collaboratively written travel guide operated by the non-profit
+  Wikimedia Foundation. It covers travel destinations worldwide with articles on
+  accommodation, sightseeing, local transport, and practical travel advice. Like all
+  Wikimedia projects, Wikivoyage exposes its content through the MediaWiki Action API
+  (/w/api.php) and the MediaWiki Core REST API (/w/rest.php/v1/), enabling developers
+  to query, retrieve, and update travel guide articles programmatically. Content is
+  available in over 20 languages. All APIs are governed by the Wikimedia Foundation API
+  Usage Guidelines: a contactable User-Agent is required, serial (non-parallel) requests
+  are expected for bulk work, and the maxlag parameter must be used by automated clients.
+url: https://en.wikivoyage.org
+image: https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wikivoyage-Logo-v3-icon.svg/120px-Wikivoyage-Logo-v3-icon.svg.png
+specificationVersion: '0.19'
+created: '2026-06-13'
+modified: '2026-06-13'
+x-type: opensource
+x-category: Travel
+x-tier: 2
+x-tier-reason: Leading open-license travel guide with global coverage; non-profit Wikimedia Foundation
+tags:
+  - Travel
+  - Open Data
+  - Public APIs
+  - Open Knowledge
+  - Travel Guide
+  - Tourism
+  - MediaWiki
+  - Non-Profit
+apis:
+  - name: Wikivoyage MediaWiki Action API
+    description: >-
+      The primary programmatic interface for Wikivoyage, exposed at
+      https://en.wikivoyage.org/w/api.php. Operations are dispatched via the action=
+      query parameter (query, parse, edit, search, ...). Enables retrieval of travel
+      destination articles, accommodation listings, sightseeing information, and
+      practical travel advice. Supports both anonymous reads and authenticated writes
+      via OAuth 2.0. JSON is the recommended response format. Running on MediaWiki
+      1.47.0-wmf.6.
+    humanURL: https://www.mediawiki.org/wiki/API:Main_page
+    baseURL: https://en.wikivoyage.org/w/api.php
+    tags:
+      - Action API
+      - Read
+      - Write
+      - Search
+      - Travel Articles
+    properties:
+      - type: Documentation
+        url: https://www.mediawiki.org/wiki/API:Main_page
+      - type: Sandbox
+        url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
+      - type: Tutorials
+        url: https://www.mediawiki.org/wiki/API:Tutorial
+      - type: Etiquette
+        url: https://www.mediawiki.org/wiki/API:Etiquette
+
+  - name: Wikivoyage MediaWiki Core REST API
+    description: >-
+      Modern REST surface under /w/rest.php/v1/ providing page CRUD, full-text search,
+      file metadata, revision history, and wikitext <-> HTML transforms. Enables
+      retrieval of Wikivoyage travel articles in wikitext, parsed HTML, or bare form.
+      Supports autocomplete on page titles for destination lookup. Also mirrored at
+      api.wikimedia.org/core/v1/wikivoyage/{lang}/ for centralized access.
+    humanURL: https://www.mediawiki.org/wiki/API:REST_API
+    baseURL: https://en.wikivoyage.org/w/rest.php/v1
+    tags:
+      - REST API
+      - Core
+      - Pages
+      - Search
+      - Transforms
+      - Travel Articles
+    properties:
+      - type: Documentation
+        url: https://www.mediawiki.org/wiki/API:REST_API/Reference
+      - type: APIPortal
+        url: https://api.wikimedia.org/wiki/Core_REST_API
+      - type: Sandbox
+        url: https://en.wikivoyage.org/wiki/Special:RestSandbox
+
+common:
+  - type: Website
+    url: https://www.wikivoyage.org
+  - type: Portal
+    url: https://en.wikivoyage.org/wiki/Wikivoyage:Welcome,_fellow_Wikivoyagers!
+  - type: Documentation
+    url: https://www.mediawiki.org/wiki/API:Main_page
+  - type: APIPortal
+    url: https://api.wikimedia.org/wiki/Main_Page
+  - type: Foundation
+    url: https://wikimediafoundation.org/
+  - type: License
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+    title: CC BY-SA 4.0 (travel article content)
+  - type: Policy
+    url: https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_API_Usage_Guidelines
+    title: API Usage Guidelines
+  - type: TermsOfService
+    url: https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use
+  - type: Status
+    url: https://www.wikimediastatus.net/
+  - type: GitHubOrganization
+    url: https://github.com/wikimedia
+  - type: BulkDownload
+    url: https://dumps.wikimedia.org/enwikivoyage/
+    title: Wikivoyage Database Dumps
+  - type: Plans
+    url: plans/wikivoyage-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/wikivoyage-rate-limits.yml
+  - type: FinOps
+    url: finops/wikivoyage-finops.yml
+
+features:
+  - name: Travel Destination Articles
+    description: >-
+      Comprehensive travel guides for cities, regions, and countries worldwide, accessible
+      via the Action API (action=parse&page={title}) or REST API (/page/{title}/with_html).
+  - name: Full-Text Search
+    description: >-
+      Search across all Wikivoyage travel articles by keyword via the REST API
+      /search/page endpoint or the Action API (action=query&list=search).
+  - name: Title Autocomplete
+    description: >-
+      Autocomplete destination names using the REST API /search/title endpoint for building
+      travel search interfaces and apps.
+  - name: Multi-Language Coverage
+    description: >-
+      Wikivoyage is available in 20+ languages; each language edition exposes the same
+      API surfaces under {lang}.wikivoyage.org.
+  - name: Revision History
+    description: >-
+      Access the full edit history of any travel article via /page/{title}/history and
+      compare revisions via /revision/{from_id}/compare/{to_id}.
+  - name: Wikitext HTML Transforms
+    description: >-
+      Convert Wikivoyage wikitext to rendered HTML (and back) on-demand via
+      /transform/wikitext/to/html/{title} - enabling custom rendering of travel content.
+  - name: Language Links
+    description: >-
+      Retrieve equivalent articles across all language editions of Wikivoyage via
+      /page/{title}/links/language.
+
+useCases:
+  - name: Travel Apps and Itinerary Planners
+    description: >-
+      Integrate Wikivoyage travel destination articles, accommodation listings, and
+      sightseeing information into mobile travel apps and itinerary planning tools.
+  - name: AI Travel Assistants
+    description: >-
+      Ground AI travel recommendations in authoritative Wikivoyage content via the REST
+      API, retrieving structured travel advice as context for LLM responses.
+  - name: Destination Guides and Tourism Websites
+    description: >-
+      Embed open-license travel content on tourism websites and destination guides,
+      fetching article content and displaying it under CC BY-SA 4.0 attribution.
+  - name: Offline Travel Reading
+    description: >-
+      Build offline travel guides using periodic database dumps from dumps.wikimedia.org
+      or by crawling the API, similar to the Kiwix/Wikipedia offline approach.
+  - name: Travel Research and Data Analysis
+    description: >-
+      Analyze global travel destination coverage, identify gaps, and study how travel
+      advice evolves over time using the revision history and bulk dump APIs.
+
+integrations:
+  - name: Wikidata
+    description: >-
+      Wikivoyage articles link to Wikidata items (QIDs) for structured geographic and
+      entity data on travel destinations.
+  - name: Wikimedia Commons
+    description: >-
+      Travel images and maps used in Wikivoyage articles are hosted on Commons and
+      accessible via the same Action API at commons.wikimedia.org/w/api.php.
+  - name: OpenStreetMap
+    description: >-
+      Wikivoyage embeds maps and location markers using OpenStreetMap tiles alongside
+      structured geo-coordinates in article templates.
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

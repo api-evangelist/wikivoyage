@@ -1,0 +1,45 @@
+name: Wikivoyage API Plans and Pricing
+description: >-
+  Wikivoyage, operated by the Wikimedia Foundation, provides its MediaWiki Action API
+  and Core REST API free of charge with no paid tiers or commercial subscription plans.
+  Access is governed by the Wikimedia Foundation API Usage Guidelines. The only commercial
+  offering in the broader Wikimedia ecosystem is Wikimedia Enterprise (a separate product
+  operated by Wikimedia LLC), which provides SLA-backed bulk data access but does not
+  specifically cover Wikivoyage content as a distinct product.
+plans:
+  - name: Free / Open Access
+    description: >-
+      All Wikivoyage API endpoints are freely accessible with no authentication required
+      for read operations. There are no paid tiers for the public APIs. Write operations
+      (article edits) require an OAuth 2.0 token obtained via a registered developer
+      application at meta.wikimedia.org.
+    price: Free
+    priceModel: Free
+    authentication: None required for reads; OAuth 2.0 required for writes
+    rateLimits:
+      - Read requests: Serial requests strongly recommended; no hard req/s limit for reads
+      - Write requests: Rate-limited by account type; bots/admins get higher limits
+      - Query results: 500 results per query (standard users); 5,000 (bots/admins)
+      - Multival parameters: 50 inputs per param (standard); 500 (bots/admins)
+    features:
+      - Full access to MediaWiki Action API (/w/api.php)
+      - Full access to MediaWiki Core REST API (/w/rest.php/v1/)
+      - Page retrieval in wikitext, HTML, and bare formats
+      - Full-text and title autocomplete search
+      - Revision history and diff comparison
+      - Wikitext <-> HTML transforms
+      - Language link lookups
+      - Article creation and editing (with OAuth 2.0)
+    requirements:
+      - A meaningful, contactable User-Agent header is mandatory
+      - User-Agent format: ClientName/Version (contact@example.com) Library/Version
+      - Use maxlag parameter for batch/bot workloads to respect server load
+      - Implement exponential backoff on ratelimited errors
+      - For bulk data, prefer Wikimedia database dumps over API crawling
+    links:
+      - name: API Usage Guidelines
+        url: https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_API_Usage_Guidelines
+      - name: Developer Account Registration
+        url: https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
+      - name: Wikivoyage Database Dumps
+        url: https://dumps.wikimedia.org/enwikivoyage/

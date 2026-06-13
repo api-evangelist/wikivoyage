@@ -1,0 +1,70 @@
+name: Wikivoyage API FinOps
+description: >-
+  Wikivoyage is a free, non-profit project of the Wikimedia Foundation. Its public APIs
+  carry zero direct monetary cost to consumers. There are no usage fees, metered billing,
+  or paid tiers for the MediaWiki Action API or MediaWiki Core REST API. Financial
+  sustainability is maintained through the Wikimedia Foundation's donor-funded model.
+  FinOps considerations for Wikivoyage API consumers are therefore focused on operational
+  efficiency, infrastructure costs on the consumer side, and responsible use of shared
+  public infrastructure rather than API spend management.
+costModel:
+  type: Free / No-Cost
+  description: >-
+    All Wikivoyage API endpoints are provided at no charge. There are no API keys to
+    purchase, no metered usage fees, and no subscription plans. The Wikimedia Foundation
+    funds the infrastructure through donations.
+  directAPICost: $0.00
+
+consumerFinOps:
+  - category: Infrastructure Cost Avoidance
+    description: >-
+      Because the API is free, consumer FinOps value comes from avoiding unnecessary
+      infrastructure costs caused by excessive API calls. Implement aggressive client-side
+      caching for travel article content, which rarely changes within a day.
+    recommendations:
+      - Cache page content for at least 1 hour (articles update infrequently)
+      - Use ETags and If-None-Match headers where supported to avoid re-fetching unchanged content
+      - Prefer Wikimedia database dumps for large-scale data ingestion over API crawling
+
+  - category: Bandwidth and Compute Efficiency
+    description: >-
+      Minimize data transfer costs by requesting only the fields and formats needed for
+      your use case.
+    recommendations:
+      - Use /page/{title}/bare (returns metadata without HTML) when full content is not needed
+      - Enable gzip compression with Accept-Encoding: gzip header
+      - Use the prop= parameter in Action API to request only required page properties
+
+  - category: Avoiding IP Blocks (Operational Risk)
+    description: >-
+      Getting blocked by Wikimedia infrastructure would create operational downtime.
+      Following etiquette guidelines is essential to avoid service interruptions.
+    recommendations:
+      - Always include a descriptive User-Agent header with contact information
+      - Use serial (non-parallel) requests for batch work
+      - Implement maxlag=5 for automated workloads
+      - Use exponential backoff when receiving ratelimited or 503 responses
+
+  - category: Bulk Data Alternative
+    description: >-
+      For use cases requiring the full Wikivoyage article corpus, the free database dumps
+      are dramatically more efficient than crawling the API article by article.
+    recommendations:
+      - Use periodic enwikivoyage XML dumps for full-corpus ingestion
+      - Dumps are available at https://dumps.wikimedia.org/enwikivoyage/
+      - Dump frequency: approximately twice per month
+
+donation:
+  description: >-
+    Wikivoyage and the Wikimedia Foundation rely on donations to fund the infrastructure
+    that powers these free APIs. Organizations benefiting commercially from Wikivoyage
+    data are encouraged to contribute to the Wikimedia Endowment.
+  url: https://donate.wikimedia.org/
+
+links:
+  - name: Wikivoyage Database Dumps
+    url: https://dumps.wikimedia.org/enwikivoyage/
+  - name: Wikimedia Donate
+    url: https://donate.wikimedia.org/
+  - name: API Etiquette (efficiency guidance)
+    url: https://www.mediawiki.org/wiki/API:Etiquette

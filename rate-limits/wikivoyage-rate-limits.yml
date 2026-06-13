@@ -1,0 +1,68 @@
+name: Wikivoyage API Rate Limits
+description: >-
+  Wikivoyage uses the standard Wikimedia Foundation rate-limiting framework applied to
+  all MediaWiki-based projects. There is no hard per-second rate limit for read
+  requests, but serial (non-parallel) requests are required for batch workloads. Write
+  operations are subject to per-account throttling enforced by MediaWiki. Clients that
+  violate the API etiquette guidelines may be blocked by IP without notice.
+rateLimits:
+  - scope: Read Requests (Action API & REST API)
+    type: Soft / Etiquette-Based
+    limit: No hard req/s cap for reads
+    policy: >-
+      Requests must be made serially (one at a time), not in parallel. Batch multiple
+      titles or page IDs into a single API call using pipe-separated values rather than
+      issuing one call per item. Caching responses client-side is expected.
+    notes: >-
+      Anonymous read traffic is served from Varnish cache replicas. Well-behaved bots
+      with proper User-Agent headers are rarely blocked.
+
+  - scope: Write Requests (Action API edits, page creation, uploads)
+    type: Hard / Server-Enforced
+    limit: Varies by account type and action
+    policy: >-
+      Write operations are rate-limited per account. When the limit is reached the API
+      returns HTTP 429 with code=ratelimited. Implement exponential backoff. Check
+      current limits via action=query&meta=userinfo&uiprop=ratelimits.
+    notes: >-
+      Bot accounts and admins have higher write rate limits than standard user accounts.
+
+  - scope: Query Results Per Request
+    type: Hard
+    limit: 500 results (standard users); 5,000 results (bots/admins with apihighlimits)
+    policy: >-
+      Pagination via the continue parameter is required for result sets exceeding the
+      per-request limit.
+
+  - scope: Multival Parameter Inputs
+    type: Hard
+    limit: 50 titles/IDs per request (standard users); 500 (bots/admins)
+    policy: >-
+      Batch titles using pipe separators. For values containing pipes use U+001F as
+      separator with a \x1f prefix.
+
+  - scope: maxlag Parameter (Bot/Batch Etiquette)
+    type: Soft / Self-Imposed
+    limit: Recommend maxlag=5 (seconds) for automated clients
+    policy: >-
+      Include ?maxlag=5 in all non-interactive API requests. The server will return
+      HTTP 503 with Retry-After header if replication lag exceeds the threshold. Respect
+      the Retry-After value and back off accordingly.
+    notes: >-
+      Lower maxlag values are more considerate of server infrastructure. Never omit
+      maxlag in bulk crawling or bot workflows.
+
+  - scope: User-Agent Requirement
+    type: Mandatory
+    limit: Requests without a meaningful User-Agent may be blocked without notice
+    policy: >-
+      Format: ClientName/Version (contact@example.com) Library/Version
+      Example: MyTravelApp/2.1 (dev@example.com) requests-python/2.31
+
+links:
+  - name: API Etiquette Guidelines
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  - name: Wikimedia API Usage Policy
+    url: https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_API_Usage_Guidelines
+  - name: Check Your Rate Limits (requires login)
+    url: https://en.wikivoyage.org/w/api.php?action=query&meta=userinfo&uiprop=ratelimits&format=json
