@@ -89,6 +89,12 @@ apis:
         url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/wikivoyage-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/wikivoyage-domain-security.yml
+  - type: Authentication
+    url: authentication/wikivoyage-authentication.yml
   - type: Website
     url: https://www.wikivoyage.org
   - type: Portal

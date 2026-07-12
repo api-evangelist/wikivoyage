@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/wikivoyage-mediawiki-action-api-openapi.yaml, openapi/wikivoyage-mediawiki-core-rest-openapi.yaml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - cookie
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 bearer token from meta.wikimedia.org
+  sources:
+  - openapi/wikivoyage-mediawiki-action-api-openapi.yaml
+  - openapi/wikivoyage-mediawiki-core-rest-openapi.yaml
+- name: CookieAuth
+  type: apiKey
+  in: cookie
+  parameter: wikivoyagewikiUserID
+  description: Session cookie obtained via action=login or action=clientlogin
+  sources:
+  - openapi/wikivoyage-mediawiki-action-api-openapi.yaml
