@@ -89,6 +89,8 @@ apis:
         url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/wikivoyage-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/wikivoyage-vulnerability-disclosure.yml
   - type: DomainSecurity
