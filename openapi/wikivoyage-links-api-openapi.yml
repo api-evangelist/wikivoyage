@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Action Authentication Links API
+  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
+
+
+    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
+
+
+    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  version: '1.47'
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+tags:
+- name: Links
+  description: Page relationships — language editions and media links
+paths:
+  /page/{title}/links/language:
+    get:
+      operationId: getPageLanguageLinks
+      summary: Wikivoyage Core REST Get Language Links for a Travel Article
+      description: Return interlanguage links (same destination article in other language editions of Wikivoyage) for a given travel article. Useful for multi-language travel apps.
+      tags:
+      - Links
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      responses:
+        '200':
+          description: Language links
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LanguageLink'
+  /page/{title}/links/media:
+    get:
+      operationId: getPageMediaLinks
+      summary: Wikivoyage Core REST Get Media Files Used in a Travel Article
+      description: List travel images, maps, and other media files referenced from a Wikivoyage article.
+      tags:
+      - Links
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      responses:
+        '200':
+          description: Files used in the travel article
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/File'
+components:
+  schemas:
+    File:
+      type: object
+      description: A travel image or map file descriptor.
+      properties:
+        title:
+          type: string
+          example: File:Paris_banner_Sacre-Coeur.jpg
+        file_description_url:
+          type: string
+          format: uri
+        latest:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            user:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+        preferred:
+          type: object
+          properties:
+            mediatype:
+              type: string
+              example: BITMAP
+            size:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            url:
+              type: string
+              format: uri
+        original:
+          type: object
+          properties:
+            mediatype:
+              type: string
+            size:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            url:
+              type: string
+              format: uri
+    LanguageLink:
+      type: object
+      properties:
+        code:
+          type: string
+          example: de
+          description: Language code for Wikivoyage edition
+        name:
+          type: string
+          example: Deutsch
+        key:
+          type: string
+          example: Paris
+        title:
+          type: string
+          example: Paris
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token from meta.wikimedia.org
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: wikivoyagewikiUserID
+      description: Session cookie obtained via action=login or action=clientlogin

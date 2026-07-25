@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Action Authentication Transforms API
+  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
+
+
+    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
+
+
+    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  version: '1.47'
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+tags:
+- name: Transforms
+  description: Wikitext <-> HTML transformation for travel content
+paths:
+  /transform/wikitext/to/html/{title}:
+    post:
+      operationId: transformWikitextToHtml
+      summary: Wikivoyage Core REST Transform Wikitext to HTML
+      description: Convert Wikivoyage wikitext into rendered HTML in the context of a given travel article title. Enables custom rendering of travel content.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - wikitext
+              properties:
+                wikitext:
+                  type: string
+                  example: '''''''Paris'''''' is the capital of France.'
+                body_only:
+                  type: boolean
+      responses:
+        '200':
+          description: HTML output
+          content:
+            text/html:
+              schema:
+                type: string
+  /transform/html/to/wikitext/{title}:
+    post:
+      operationId: transformHtmlToWikitext
+      summary: Wikivoyage Core REST Transform HTML to Wikitext
+      description: Convert HTML into Wikivoyage wikitext in the context of a given travel article title.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - html
+              properties:
+                html:
+                  type: string
+                body_only:
+                  type: boolean
+      responses:
+        '200':
+          description: Wikitext output
+          content:
+            text/plain:
+              schema:
+                type: string
+  /transform/wikitext/to/lint/{title}:
+    post:
+      operationId: transformWikitextToLint
+      summary: Wikivoyage Core REST Lint Wikitext for Errors
+      description: Identify lint errors in Wikivoyage wikitext (e.g. broken HTML, deprecated syntax). Useful for validating travel article edits before submission.
+      tags:
+      - Transforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - wikitext
+              properties:
+                wikitext:
+                  type: string
+      responses:
+        '200':
+          description: List of lint errors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token from meta.wikimedia.org
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: wikivoyagewikiUserID
+      description: Session cookie obtained via action=login or action=clientlogin

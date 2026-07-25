@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Action Authentication History API
+  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
+
+
+    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
+
+
+    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  version: '1.47'
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+tags:
+- name: History
+  description: Travel article revision history and edit statistics
+paths:
+  /page/{title}/history:
+    get:
+      operationId: getPageHistory
+      summary: Wikivoyage Core REST Get Travel Article Revision History
+      description: Retrieve the full revision history for a Wikivoyage travel article, enabling tracking of how travel information evolves over time.
+      tags:
+      - History
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      - name: older_than
+        in: query
+        schema:
+          type: integer
+        description: Return revisions older than this ID
+      - name: newer_than
+        in: query
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        schema:
+          type: string
+          enum:
+          - reverted
+          - anonymous
+          - bot
+          - minor
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /page/{title}/history/counts/{type}:
+    get:
+      operationId: getPageHistoryCounts
+      summary: Wikivoyage Core REST Get Edit Statistics for a Travel Article
+      description: Get edit count statistics for a Wikivoyage travel article by category.
+      tags:
+      - History
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+        description: URL-encoded travel article title
+        example: Paris
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - anonymous
+          - bot
+          - editors
+          - edits
+          - minor
+          - reverted
+        description: Type of count to return
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditCounts'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    EditCounts:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Edit count of requested type
+        limit:
+          type: boolean
+          description: Whether the count was truncated
+    Revision:
+      type: object
+      description: A travel article revision.
+      properties:
+        id:
+          type: integer
+          example: 5234567
+        page:
+          type: object
+          properties:
+            id:
+              type: integer
+            title:
+              type: string
+        size:
+          type: integer
+          description: Byte size of revision
+        minor:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        content_model:
+          type: string
+          example: wikitext
+        license:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            title:
+              type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              example: TravelContributor
+        comment:
+          type: string
+          description: Edit summary
+        delta:
+          type: integer
+          description: Byte delta from previous revision
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
+    HistoryResponse:
+      type: object
+      properties:
+        revisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Revision'
+        latest:
+          type: string
+          format: uri
+          description: Link to latest revisions page
+        older:
+          type: string
+          format: uri
+          nullable: true
+        newer:
+          type: string
+          format: uri
+          nullable: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token from meta.wikimedia.org
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: wikivoyagewikiUserID
+      description: Session cookie obtained via action=login or action=clientlogin

@@ -1,0 +1,315 @@
+openapi: 3.0.3
+info:
+  title: Wikivoyage MediaWiki Action Authentication Revisions API
+  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
+
+
+    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
+
+
+    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  version: '1.47'
+  x-generated-from: documentation
+  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-last-validated: '2026-06-13'
+  contact:
+    name: Wikimedia Foundation
+    url: https://www.mediawiki.org/wiki/API:Etiquette
+  license:
+    name: CC BY-SA 4.0
+    url: https://creativecommons.org/licenses/by-sa/4.0/
+servers:
+- url: https://en.wikivoyage.org/w
+  description: English Wikivoyage
+- url: https://{lang}.wikivoyage.org/w
+  description: Per-language Wikivoyage
+  variables:
+    lang:
+      default: en
+      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+tags:
+- name: Revisions
+  description: Individual revision retrieval and comparison
+paths:
+  /revision/{id}:
+    get:
+      operationId: getRevision
+      summary: Wikivoyage Core REST Get Revision with HTML Link
+      description: Retrieve a specific revision of a Wikivoyage travel article and a link to its rendered HTML.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/bare:
+    get:
+      operationId: getRevisionBare
+      summary: Wikivoyage Core REST Get Revision Metadata
+      description: Retrieve revision metadata without source or HTML content.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/source:
+    get:
+      operationId: getRevisionSource
+      summary: Wikivoyage Core REST Get Revision Wikitext Source
+      description: Retrieve the wikitext source for a specific revision of a travel article.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{id}/html:
+    get:
+      operationId: getRevisionHtml
+      summary: Wikivoyage Core REST Get Revision as HTML
+      description: Retrieve the rendered HTML for a specific revision of a Wikivoyage travel article.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: HTML for the revision
+          content:
+            text/html:
+              schema:
+                type: string
+  /revision/{id}/with_html:
+    get:
+      operationId: getRevisionWithHtml
+      summary: Wikivoyage Core REST Get Revision Metadata and HTML
+      description: Retrieve revision metadata together with rendered HTML for a travel article revision.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Revision identifier
+        example: 5234567
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Revision'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /revision/{from}/compare/{to}:
+    post:
+      operationId: compareRevisions
+      summary: Wikivoyage Core REST Compare Two Travel Article Revisions
+      description: Produce a structured diff between two revisions of a Wikivoyage travel article to track changes in travel information over time.
+      tags:
+      - Revisions
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: from
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: From revision ID
+      - name: to
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: To revision ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompareResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Revision:
+      type: object
+      description: A travel article revision.
+      properties:
+        id:
+          type: integer
+          example: 5234567
+        page:
+          type: object
+          properties:
+            id:
+              type: integer
+            title:
+              type: string
+        size:
+          type: integer
+          description: Byte size of revision
+        minor:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+        content_model:
+          type: string
+          example: wikitext
+        license:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            title:
+              type: string
+        user:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              example: TravelContributor
+        comment:
+          type: string
+          description: Edit summary
+        delta:
+          type: integer
+          description: Byte delta from previous revision
+    CompareResponse:
+      type: object
+      description: Comparison between two travel article revisions.
+      properties:
+        from:
+          $ref: '#/components/schemas/Revision'
+        to:
+          $ref: '#/components/schemas/Revision'
+        diff:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: integer
+                description: 0 context, 1 add line, 2 delete line, 3 in-line change, 4 moved paragraph, 5 paragraph moved into place
+              lineNumber:
+                type: integer
+              text:
+                type: string
+              offset:
+                type: object
+                properties:
+                  from:
+                    type: integer
+                  to:
+                    type: integer
+              highlightRanges:
+                type: array
+                items:
+                  type: object
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token from meta.wikimedia.org
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: wikivoyagewikiUserID
+      description: Session cookie obtained via action=login or action=clientlogin
