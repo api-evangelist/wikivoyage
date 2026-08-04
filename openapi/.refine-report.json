@@ -1,0 +1,40 @@
+{
+  "provider": "wikivoyage",
+  "sources": [
+    "wikivoyage-authentication-api-openapi.yml",
+    "wikivoyage-edit-api-openapi.yml",
+    "wikivoyage-files-api-openapi.yml",
+    "wikivoyage-history-api-openapi.yml",
+    "wikivoyage-links-api-openapi.yml",
+    "wikivoyage-meta-api-openapi.yml",
+    "wikivoyage-pages-api-openapi.yml",
+    "wikivoyage-parse-api-openapi.yml",
+    "wikivoyage-patrol-api-openapi.yml",
+    "wikivoyage-query-api-openapi.yml",
+    "wikivoyage-revisions-api-openapi.yml",
+    "wikivoyage-search-api-openapi.yml",
+    "wikivoyage-transforms-api-openapi.yml",
+    "wikivoyage-upload-api-openapi.yml"
+  ],
+  "outputs": [
+    "wikivoyage-authentication-api-openapi.yml",
+    "wikivoyage-edit-api-openapi.yml",
+    "wikivoyage-files-api-openapi.yml",
+    "wikivoyage-history-api-openapi.yml",
+    "wikivoyage-links-api-openapi.yml",
+    "wikivoyage-meta-api-openapi.yml",
+    "wikivoyage-pages-api-openapi.yml",
+    "wikivoyage-parse-api-openapi.yml",
+    "wikivoyage-patrol-api-openapi.yml",
+    "wikivoyage-query-api-openapi.yml",
+    "wikivoyage-revisions-api-openapi.yml",
+    "wikivoyage-search-api-openapi.yml",
+    "wikivoyage-transforms-api-openapi.yml",
+    "wikivoyage-upload-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
