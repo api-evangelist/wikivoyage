@@ -25,7 +25,7 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wikivoyage-Logo-v3-icon.svg/120px-Wikivoyage-Logo-v3-icon.svg.png
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 created: '2026-06-13'
 modified: '2026-06-13'
 x-type: opensource
