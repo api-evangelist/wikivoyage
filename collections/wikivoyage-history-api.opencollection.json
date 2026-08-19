@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication History API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Article Revision History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/history",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              },
+              {
+                "name": "older_than",
+                "value": "",
+                "type": "query",
+                "description": "Return revisions older than this ID"
+              },
+              {
+                "name": "newer_than",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the full revision history for a Wikivoyage travel article, enabling tracking of how travel information evolves over time."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Edit Statistics for a Travel Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/history/counts/:type",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Type of count to return"
+              }
+            ]
+          },
+          "docs": "Get edit count statistics for a Wikivoyage travel article by category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

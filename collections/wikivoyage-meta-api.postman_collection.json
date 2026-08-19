@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "2cf63f77-e765-456d-84c0-b44838dbd9fa",
+      "name": "Meta",
+      "description": {
+        "content": "Metadata operations (action=opensearch, action=feedrecentchanges)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dad4a0a1-617d-4b49-935d-9c6aa517a9fa",
+          "name": "Wikivoyage MediaWiki Action API Dispatch (GET)",
+          "request": {
+            "name": "Wikivoyage MediaWiki Action API Dispatch (GET)",
+            "description": {
+              "content": "Generic dispatch endpoint for read operations on Wikivoyage travel content. Use ?action=query for data retrieval, ?action=parse to parse wikitext travel articles, ?action=opensearch for destination auto-complete. Always include format=json. Combine multiple titles with the pipe character (titles=Paris|Rome|Tokyo). Use the maxlag parameter for non-interactive jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) API action to dispatch"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "(Required) Response format. Always use json."
+                },
+                {
+                  "disabled": false,
+                  "key": "titles",
+                  "value": "<string>",
+                  "description": "Pipe-separated list of travel destination article titles"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageids",
+                  "value": "<string>",
+                  "description": "Pipe-separated list of page IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "prop",
+                  "value": "<string>",
+                  "description": "Properties to fetch (info|revisions|links|categories|images|extracts|...)"
+                },
+                {
+                  "disabled": false,
+                  "key": "list",
+                  "value": "<string>",
+                  "description": "List generators (allpages|search|recentchanges|categorymembers|...)"
+                },
+                {
+                  "disabled": false,
+                  "key": "meta",
+                  "value": "<string>",
+                  "description": "Meta queries (siteinfo|userinfo|tokens|...)"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxlag",
+                  "value": "<integer>",
+                  "description": "Maximum replication lag in seconds before the request is rejected. Required for bots."
+                },
+                {
+                  "disabled": false,
+                  "key": "smaxage",
+                  "value": "<integer>",
+                  "description": "Shared-cache max-age in seconds"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxage",
+                  "value": "<integer>",
+                  "description": "Cache max-age in seconds"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b138092-cd3a-4b69-8c30-627a7fcbb9b9",
+              "name": "Action result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "query"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "titles",
+                      "value": "Paris|Rome|Tokyo"
+                    },
+                    {
+                      "key": "pageids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prop",
+                      "value": "info|revisions"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "meta",
+                      "value": "tokens"
+                    },
+                    {
+                      "key": "maxlag",
+                      "value": "5"
+                    },
+                    {
+                      "key": "smaxage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "maxage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchcomplete\": \"string\",\n  \"continue\": {},\n  \"query\": {},\n  \"parse\": {},\n  \"edit\": {},\n  \"login\": {},\n  \"error\": {\n    \"code\": \"ratelimited\",\n    \"info\": \"string\",\n    \"*\": \"string\",\n    \"docref\": \"string\"\n  },\n  \"warnings\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cff2e313-66a5-4894-b6f2-9567d2714a6b",
+              "name": "Rate limited - retry with exponential backoff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "query"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "titles",
+                      "value": "Paris|Rome|Tokyo"
+                    },
+                    {
+                      "key": "pageids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prop",
+                      "value": "info|revisions"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "meta",
+                      "value": "tokens"
+                    },
+                    {
+                      "key": "maxlag",
+                      "value": "5"
+                    },
+                    {
+                      "key": "smaxage",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "maxage",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e95c8309-a677-4f3d-b43a-d7ba82a60fff",
+    "name": "Wikivoyage MediaWiki Action Authentication Meta API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

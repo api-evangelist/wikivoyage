@@ -1,0 +1,818 @@
+{
+  "item": [
+    {
+      "id": "cf6738d0-fc83-4215-9ad0-20c1418d72cd",
+      "name": "Revisions",
+      "description": {
+        "content": "Individual revision retrieval and comparison",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a7a5a30-c111-4542-b0bd-394f6b256cb6",
+          "name": "Wikivoyage Core REST Get Revision with HTML Link",
+          "request": {
+            "name": "Wikivoyage Core REST Get Revision with HTML Link",
+            "description": {
+              "content": "Retrieve a specific revision of a Wikivoyage travel article and a link to its rendered HTML.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Revision identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdea0ee6-34d2-4953-8a61-0d3d52a17b2d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5234567,\n  \"page\": {\n    \"id\": 5971,\n    \"title\": \"string\"\n  },\n  \"size\": 9596,\n  \"minor\": true,\n  \"timestamp\": \"1962-07-23T06:00:23.036Z\",\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://wZnCLWGlYNFEWJJFBQIZFAIQpZ.sfpL.jCRCkFbK-ThvAm,fWOgxOCZmQD6XVv\",\n    \"title\": \"string\"\n  },\n  \"user\": {\n    \"id\": 10,\n    \"name\": \"TravelContributor\"\n  },\n  \"comment\": \"string\",\n  \"delta\": 2629\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca0c6020-e04e-44c3-b8a2-101f6dd9ba03",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bc4cad6-7afb-469a-aec3-6ce3c7cd1da5",
+          "name": "Wikivoyage Core REST Get Revision Metadata",
+          "request": {
+            "name": "Wikivoyage Core REST Get Revision Metadata",
+            "description": {
+              "content": "Retrieve revision metadata without source or HTML content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":id",
+                "bare"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Revision identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e69eb30f-8d96-4310-8a13-58764b2d908e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "bare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5234567,\n  \"page\": {\n    \"id\": 5971,\n    \"title\": \"string\"\n  },\n  \"size\": 9596,\n  \"minor\": true,\n  \"timestamp\": \"1962-07-23T06:00:23.036Z\",\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://wZnCLWGlYNFEWJJFBQIZFAIQpZ.sfpL.jCRCkFbK-ThvAm,fWOgxOCZmQD6XVv\",\n    \"title\": \"string\"\n  },\n  \"user\": {\n    \"id\": 10,\n    \"name\": \"TravelContributor\"\n  },\n  \"comment\": \"string\",\n  \"delta\": 2629\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32f89810-6772-4a3e-9024-b5b66035d754",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "bare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf925f19-9e0b-4930-9a85-e9e76cdff49f",
+          "name": "Wikivoyage Core REST Get Revision Wikitext Source",
+          "request": {
+            "name": "Wikivoyage Core REST Get Revision Wikitext Source",
+            "description": {
+              "content": "Retrieve the wikitext source for a specific revision of a travel article.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":id",
+                "source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Revision identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a923ebe-dbad-4f79-9d8a-184e75133503",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5234567,\n  \"page\": {\n    \"id\": 5971,\n    \"title\": \"string\"\n  },\n  \"size\": 9596,\n  \"minor\": true,\n  \"timestamp\": \"1962-07-23T06:00:23.036Z\",\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://wZnCLWGlYNFEWJJFBQIZFAIQpZ.sfpL.jCRCkFbK-ThvAm,fWOgxOCZmQD6XVv\",\n    \"title\": \"string\"\n  },\n  \"user\": {\n    \"id\": 10,\n    \"name\": \"TravelContributor\"\n  },\n  \"comment\": \"string\",\n  \"delta\": 2629\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a4c5ca9-0ef5-4bcd-9809-583bcc1b2c48",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab7d9e25-7728-4603-8309-daa7c0b31552",
+          "name": "Wikivoyage Core REST Get Revision as HTML",
+          "request": {
+            "name": "Wikivoyage Core REST Get Revision as HTML",
+            "description": {
+              "content": "Retrieve the rendered HTML for a specific revision of a Wikivoyage travel article.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":id",
+                "html"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Revision identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57af9757-c1b9-4ed1-b2f4-4c0c55a59bb9",
+              "name": "HTML for the revision",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e05dc07b-cc22-4ef1-a717-3f4c64c76337",
+          "name": "Wikivoyage Core REST Get Revision Metadata and HTML",
+          "request": {
+            "name": "Wikivoyage Core REST Get Revision Metadata and HTML",
+            "description": {
+              "content": "Retrieve revision metadata together with rendered HTML for a travel article revision.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":id",
+                "with_html"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Revision identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63da3cbf-ff53-4bd8-9274-4f2f22e344dc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "with_html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5234567,\n  \"page\": {\n    \"id\": 5971,\n    \"title\": \"string\"\n  },\n  \"size\": 9596,\n  \"minor\": true,\n  \"timestamp\": \"1962-07-23T06:00:23.036Z\",\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://wZnCLWGlYNFEWJJFBQIZFAIQpZ.sfpL.jCRCkFbK-ThvAm,fWOgxOCZmQD6XVv\",\n    \"title\": \"string\"\n  },\n  \"user\": {\n    \"id\": 10,\n    \"name\": \"TravelContributor\"\n  },\n  \"comment\": \"string\",\n  \"delta\": 2629\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5563f44b-2495-4575-8c88-646aaa24c811",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":id",
+                    "with_html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Revision identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13829e4b-4312-492d-876b-389638aacb5b",
+          "name": "Wikivoyage Core REST Compare Two Travel Article Revisions",
+          "request": {
+            "name": "Wikivoyage Core REST Compare Two Travel Article Revisions",
+            "description": {
+              "content": "Produce a structured diff between two revisions of a Wikivoyage travel article to track changes in travel information over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revision",
+                ":from",
+                "compare",
+                ":to"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "from",
+                  "description": "(Required) From revision ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "to",
+                  "description": "(Required) To revision ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bddc4163-e6ef-40f0-97ea-42079b6d9424",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":from",
+                    "compare",
+                    ":to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "from",
+                      "description": "(Required) From revision ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "to",
+                      "description": "(Required) To revision ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"from\": {\n    \"id\": 5234567,\n    \"page\": {\n      \"id\": 120,\n      \"title\": \"string\"\n    },\n    \"size\": 9876,\n    \"minor\": true,\n    \"timestamp\": \"1960-03-14T11:32:52.677Z\",\n    \"content_model\": \"wikitext\",\n    \"license\": {\n      \"url\": \"http://nFEDt.jmghIjNjg2,0DxLc3XFg+Qm8Wc\",\n      \"title\": \"string\"\n    },\n    \"user\": {\n      \"id\": 7370,\n      \"name\": \"TravelContributor\"\n    },\n    \"comment\": \"string\",\n    \"delta\": 9366\n  },\n  \"to\": {\n    \"id\": 5234567,\n    \"page\": {\n      \"id\": 5625,\n      \"title\": \"string\"\n    },\n    \"size\": 8093,\n    \"minor\": true,\n    \"timestamp\": \"1987-06-02T01:27:03.701Z\",\n    \"content_model\": \"wikitext\",\n    \"license\": {\n      \"url\": \"http://eWjvLdvuKYmsaTUkdRU.npowREOGlgKDXr7L..FOTLR.PaRs2qkBPcuTVjC,p7sXc2cssjUrq3Z6\",\n      \"title\": \"string\"\n    },\n    \"user\": {\n      \"id\": 5992,\n      \"name\": \"TravelContributor\"\n    },\n    \"comment\": \"string\",\n    \"delta\": 8884\n  },\n  \"diff\": [\n    {\n      \"type\": 8471,\n      \"lineNumber\": 2628,\n      \"text\": \"string\",\n      \"offset\": {\n        \"from\": 9186,\n        \"to\": 7984\n      }\n    },\n    {\n      \"type\": 9844,\n      \"lineNumber\": 7770,\n      \"text\": \"string\",\n      \"offset\": {\n        \"from\": 5846,\n        \"to\": 3812\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9d0997c-e1c5-49a9-89e4-5a9da785e4ca",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revision",
+                    ":from",
+                    "compare",
+                    ":to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "from",
+                      "description": "(Required) From revision ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "to",
+                      "description": "(Required) To revision ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8e456c7a-ed1a-4844-b359-738db932d815",
+    "name": "Wikivoyage MediaWiki Action Authentication Revisions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

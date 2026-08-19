@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Revisions API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Revision with HTML Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/revision/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "5234567",
+                "type": "path",
+                "description": "Revision identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific revision of a Wikivoyage travel article and a link to its rendered HTML."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Revision Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/revision/:id/bare",
+            "params": [
+              {
+                "name": "id",
+                "value": "5234567",
+                "type": "path",
+                "description": "Revision identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve revision metadata without source or HTML content."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Revision Wikitext Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/revision/:id/source",
+            "params": [
+              {
+                "name": "id",
+                "value": "5234567",
+                "type": "path",
+                "description": "Revision identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the wikitext source for a specific revision of a travel article."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Revision as HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/revision/:id/html",
+            "params": [
+              {
+                "name": "id",
+                "value": "5234567",
+                "type": "path",
+                "description": "Revision identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the rendered HTML for a specific revision of a Wikivoyage travel article."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Revision Metadata and HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/revision/:id/with_html",
+            "params": [
+              {
+                "name": "id",
+                "value": "5234567",
+                "type": "path",
+                "description": "Revision identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve revision metadata together with rendered HTML for a travel article revision."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Compare Two Travel Article Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/revision/:from/compare/:to",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "path",
+                "description": "From revision ID"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "path",
+                "description": "To revision ID"
+              }
+            ]
+          },
+          "docs": "Produce a structured diff between two revisions of a Wikivoyage travel article to track changes in travel information over time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

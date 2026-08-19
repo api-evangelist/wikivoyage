@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Meta API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage MediaWiki Action API Dispatch (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/api.php",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "API action to dispatch"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Always use json."
+              },
+              {
+                "name": "titles",
+                "value": "Paris|Rome|Tokyo",
+                "type": "query",
+                "description": "Pipe-separated list of travel destination article titles"
+              },
+              {
+                "name": "pageids",
+                "value": "",
+                "type": "query",
+                "description": "Pipe-separated list of page IDs"
+              },
+              {
+                "name": "prop",
+                "value": "info|revisions",
+                "type": "query",
+                "description": "Properties to fetch (info|revisions|links|categories|images|extracts|...)"
+              },
+              {
+                "name": "list",
+                "value": "",
+                "type": "query",
+                "description": "List generators (allpages|search|recentchanges|categorymembers|...)"
+              },
+              {
+                "name": "meta",
+                "value": "tokens",
+                "type": "query",
+                "description": "Meta queries (siteinfo|userinfo|tokens|...)"
+              },
+              {
+                "name": "maxlag",
+                "value": "5",
+                "type": "query",
+                "description": "Maximum replication lag in seconds before the request is rejected. Required for bots."
+              },
+              {
+                "name": "smaxage",
+                "value": "",
+                "type": "query",
+                "description": "Shared-cache max-age in seconds"
+              },
+              {
+                "name": "maxage",
+                "value": "",
+                "type": "query",
+                "description": "Cache max-age in seconds"
+              }
+            ]
+          },
+          "docs": "Generic dispatch endpoint for read operations on Wikivoyage travel content. Use ?action=query for data retrieval, ?action=parse to parse wikitext travel articles, ?action=opensearch for destination auto-complete. Always include format=json. Combine multiple titles with the pipe character (titles=Paris|Rome|Tokyo). Use the maxlag parameter for non-interactive jobs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

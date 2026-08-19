@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Links API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Language Links for a Travel Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/links/language",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ]
+          },
+          "docs": "Return interlanguage links (same destination article in other language editions of Wikivoyage) for a given travel article. Useful for multi-language travel apps."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Media Files Used in a Travel Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/links/media",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ]
+          },
+          "docs": "List travel images, maps, and other media files referenced from a Wikivoyage article."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

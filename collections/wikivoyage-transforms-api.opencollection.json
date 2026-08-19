@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Transforms API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Transform Wikitext to HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/transform/wikitext/to/html/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert Wikivoyage wikitext into rendered HTML in the context of a given travel article title. Enables custom rendering of travel content."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Transform HTML to Wikitext",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/transform/html/to/wikitext/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert HTML into Wikivoyage wikitext in the context of a given travel article title."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Lint Wikitext for Errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/transform/wikitext/to/lint/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Identify lint errors in Wikivoyage wikitext (e.g. broken HTML, deprecated syntax). Useful for validating travel article edits before submission."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Search API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Full-Text Search Travel Articles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/search/page",
+            "params": [
+              {
+                "name": "q",
+                "value": "Paris restaurants",
+                "type": "query",
+                "description": "Search query for travel destinations or topics"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result count limit"
+              }
+            ]
+          },
+          "docs": "Full-text search of Wikivoyage travel article titles and contents. Supports keyword queries across all destination guides, accommodation listings, sightseeing information, and practical travel advice."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Autocomplete Destination Title Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/search/title",
+            "params": [
+              {
+                "name": "q",
+                "value": "Par",
+                "type": "query",
+                "description": "Destination title prefix for autocomplete"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result count limit"
+              }
+            ]
+          },
+          "docs": "Auto-complete search of Wikivoyage travel article titles by prefix match. Useful for building destination lookup interfaces and travel search apps."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

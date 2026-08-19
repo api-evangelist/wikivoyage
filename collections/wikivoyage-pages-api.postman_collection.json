@@ -1,0 +1,833 @@
+{
+  "item": [
+    {
+      "id": "23f53cea-207f-4ed7-8b77-9522a76b6c2f",
+      "name": "Pages",
+      "description": {
+        "content": "Travel article metadata, HTML, source, create, update",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fd01b6e-7cda-4101-bbb9-9e9e3f10795f",
+          "name": "Wikivoyage Core REST Get Travel Article Source and Metadata",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Article Source and Metadata",
+            "description": {
+              "content": "Retrieve a Wikivoyage travel article including its wikitext source and metadata. Returns the article's current revision along with page ID, title, license, and a link to the rendered HTML version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "redirect",
+                  "value": "<string>",
+                  "description": "Whether to resolve redirects"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f474c7eb-f494-4904-9c0a-50e7de22888a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "redirect",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"key\": \"Paris\",\n  \"title\": \"Paris\",\n  \"latest\": {\n    \"id\": 5234567,\n    \"timestamp\": \"2026-06-13T10:00:00Z\"\n  },\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\",\n    \"title\": \"Creative Commons Attribution-Share Alike 4.0\"\n  },\n  \"html_url\": \"https://tOyBflkApVtPOXJoTGvD.brDwdcu9fwGxK2-SYUIMlqpQgHYLhQ,i.TlvAWgQw6\",\n  \"source\": \"string\",\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61050140-b606-4bbb-b3d5-55de94b65c68",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "redirect",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62e27132-40e4-4a23-955d-58bd1d57a8e6",
+          "name": "Wikivoyage Core REST Update or Create a Travel Article",
+          "request": {
+            "name": "Wikivoyage Core REST Update or Create a Travel Article",
+            "description": {
+              "content": "Update an existing Wikivoyage travel article, or create one if it does not exist. Uses optimistic concurrency via latest.id to prevent edit conflicts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"content_model\": \"<string>\",\n  \"latest\": {\n    \"id\": \"<integer>\"\n  },\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a2f4e07-d5ac-4f14-a05c-796c0005c10c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"content_model\": \"wikitext\",\n  \"latest\": {\n    \"id\": \"<integer>\"\n  },\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"key\": \"Paris\",\n  \"title\": \"Paris\",\n  \"latest\": {\n    \"id\": 5234567,\n    \"timestamp\": \"2026-06-13T10:00:00Z\"\n  },\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\",\n    \"title\": \"Creative Commons Attribution-Share Alike 4.0\"\n  },\n  \"html_url\": \"https://tOyBflkApVtPOXJoTGvD.brDwdcu9fwGxK2-SYUIMlqpQgHYLhQ,i.TlvAWgQw6\",\n  \"source\": \"string\",\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0fe9428-3a11-4029-a4cc-4084c8dfdb10",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"content_model\": \"wikitext\",\n  \"latest\": {\n    \"id\": \"<integer>\"\n  },\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "284eb444-ec1a-4dcd-bbe0-19c8911bcb65",
+          "name": "Wikivoyage Core REST Get Travel Article Metadata Without Content",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Article Metadata Without Content",
+            "description": {
+              "content": "Retrieve metadata about a travel article including a link to its rendered HTML, without fetching the full content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "bare"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a22d169d-fb9f-42d4-9ddb-fb32578ab5a0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "bare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"key\": \"Paris\",\n  \"title\": \"Paris\",\n  \"latest\": {\n    \"id\": 5234567,\n    \"timestamp\": \"2026-06-13T10:00:00Z\"\n  },\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\",\n    \"title\": \"Creative Commons Attribution-Share Alike 4.0\"\n  },\n  \"html_url\": \"https://tOyBflkApVtPOXJoTGvD.brDwdcu9fwGxK2-SYUIMlqpQgHYLhQ,i.TlvAWgQw6\",\n  \"source\": \"string\",\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c2e1587-5554-4286-9694-fb8ea35ce63f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "bare"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7eb3609d-7ef1-4261-836e-c530bf1bd06e",
+          "name": "Wikivoyage Core REST Get Travel Article as HTML",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Article as HTML",
+            "description": {
+              "content": "Retrieve the rendered HTML for a Wikivoyage travel article destination page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "html"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a33aa67b-e715-48d1-a226-43a76c8e34e6",
+              "name": "Rendered HTML travel article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7d19f9b-95bf-4a22-900f-120b559323ec",
+          "name": "Wikivoyage Core REST Get Travel Article Metadata and HTML",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Article Metadata and HTML",
+            "description": {
+              "content": "Retrieve travel article metadata together with rendered HTML in a single response. Useful for building travel apps that need both structured metadata and rendered content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "with_html"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60676680-638c-45b5-96c2-aeeec3d549ee",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "with_html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"key\": \"Paris\",\n  \"title\": \"Paris\",\n  \"latest\": {\n    \"id\": 5234567,\n    \"timestamp\": \"2026-06-13T10:00:00Z\"\n  },\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\",\n    \"title\": \"Creative Commons Attribution-Share Alike 4.0\"\n  },\n  \"html_url\": \"https://tOyBflkApVtPOXJoTGvD.brDwdcu9fwGxK2-SYUIMlqpQgHYLhQ,i.TlvAWgQw6\",\n  \"source\": \"string\",\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a2cfcee-596c-49be-ad7e-1b864d6b9ae1",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "with_html"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1594c42d-5b04-400b-8e8a-5aa10b585cf7",
+          "name": "Wikivoyage Core REST Create a New Travel Article",
+          "request": {
+            "name": "Wikivoyage Core REST Create a New Travel Article",
+            "description": {
+              "content": "Create a new Wikivoyage travel guide article. Requires OAuth bearer token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"title\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"content_model\": \"<string>\",\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e6f4f2b-122e-4745-a88a-6c892e5e48aa",
+              "name": "Travel article created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"'''Paris''' is the capital city of [[France]].\",\n  \"title\": \"Paris/Montmartre\",\n  \"comment\": \"Creating new district article for Montmartre\",\n  \"content_model\": \"wikitext\",\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12345,\n  \"key\": \"Paris\",\n  \"title\": \"Paris\",\n  \"latest\": {\n    \"id\": 5234567,\n    \"timestamp\": \"2026-06-13T10:00:00Z\"\n  },\n  \"content_model\": \"wikitext\",\n  \"license\": {\n    \"url\": \"https://creativecommons.org/licenses/by-sa/4.0/\",\n    \"title\": \"Creative Commons Attribution-Share Alike 4.0\"\n  },\n  \"html_url\": \"https://tOyBflkApVtPOXJoTGvD.brDwdcu9fwGxK2-SYUIMlqpQgHYLhQ,i.TlvAWgQw6\",\n  \"source\": \"string\",\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6308ba92-204d-4035-85b6-041a9164704e",
+    "name": "Wikivoyage MediaWiki Action Authentication Pages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

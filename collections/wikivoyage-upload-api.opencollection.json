@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Upload API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage MediaWiki Action API Dispatch (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/api.php",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generic dispatch endpoint for write operations on Wikivoyage. Use ?action=edit to create/modify travel guide articles, ?action=upload for images, ?action=login or ?action=clientlogin to authenticate. All write operations require a CSRF token from action=query&meta=tokens. POSTs are not cached - use them for writes only."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

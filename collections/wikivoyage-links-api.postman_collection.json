@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "8c9fe818-5679-45a1-a130-9a87a8b39f10",
+      "name": "Links",
+      "description": {
+        "content": "Page relationships — language editions and media links",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c992a69c-9856-4826-a387-c03a0556633b",
+          "name": "Wikivoyage Core REST Get Language Links for a Travel Article",
+          "request": {
+            "name": "Wikivoyage Core REST Get Language Links for a Travel Article",
+            "description": {
+              "content": "Return interlanguage links (same destination article in other language editions of Wikivoyage) for a given travel article. Useful for multi-language travel apps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "links",
+                "language"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f86f4d6b-9fd2-479c-829e-f921fe28f0fd",
+              "name": "Language links",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "links",
+                    "language"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"de\",\n    \"name\": \"Deutsch\",\n    \"key\": \"Paris\",\n    \"title\": \"Paris\"\n  },\n  {\n    \"code\": \"de\",\n    \"name\": \"Deutsch\",\n    \"key\": \"Paris\",\n    \"title\": \"Paris\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecf3884d-5f76-4d72-a6c8-a28a2e313493",
+          "name": "Wikivoyage Core REST Get Media Files Used in a Travel Article",
+          "request": {
+            "name": "Wikivoyage Core REST Get Media Files Used in a Travel Article",
+            "description": {
+              "content": "List travel images, maps, and other media files referenced from a Wikivoyage article.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "links",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50f767c9-1999-40c7-abcd-a5172c5c8fdc",
+              "name": "Files used in the travel article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "links",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"title\": \"File:Paris_banner_Sacre-Coeur.jpg\",\n      \"file_description_url\": \"https://pGVsw.ptuW8sEi1\",\n      \"latest\": {\n        \"timestamp\": \"2011-05-15T03:37:42.294Z\",\n        \"user\": {\n          \"id\": 923,\n          \"name\": \"string\"\n        }\n      },\n      \"preferred\": {\n        \"mediatype\": \"BITMAP\",\n        \"size\": 2547,\n        \"width\": 4687,\n        \"height\": 9907,\n        \"url\": \"http://zpiBrqZolbPP.ubIeQftDz695zPtsBp,ZC7MKXy6vEq5OLUJesCZZM18R5CGBeZ8D\"\n      },\n      \"original\": {\n        \"mediatype\": \"string\",\n        \"size\": 791,\n        \"width\": 2023,\n        \"height\": 8606,\n        \"url\": \"https://lWhARcxVhnZQLoJkoNZH.quabBfxNDKO6fCAFT6kp5EqiFUeGxIcfdaqLJbSI9ElIaI-1reOUe0seRBtTKBk\"\n      }\n    },\n    {\n      \"title\": \"File:Paris_banner_Sacre-Coeur.jpg\",\n      \"file_description_url\": \"http://AQKBRqWMmhLbaDcRntfOiLpeOXqDQt.cwPnfoRCB2T2MFHvyHQK611R4YlEs0YGHyXMXpssds7gb5AM3x6x1fIeQK2XXAjJFNVJ\",\n      \"latest\": {\n        \"timestamp\": \"1974-12-05T09:06:26.451Z\",\n        \"user\": {\n          \"id\": 3455,\n          \"name\": \"string\"\n        }\n      },\n      \"preferred\": {\n        \"mediatype\": \"BITMAP\",\n        \"size\": 8406,\n        \"width\": 3674,\n        \"height\": 6192,\n        \"url\": \"http://fGRXj.qyqjcnuHPr4DFIumK.5vscuObPRMefI3w\"\n      },\n      \"original\": {\n        \"mediatype\": \"string\",\n        \"size\": 6462,\n        \"width\": 5449,\n        \"height\": 4878,\n        \"url\": \"http://MemKMYlhwkKnYyQfXvRWifLCkxk.mlH7+jMNwFbaZzv7bc0IXtHzXHas-st9-kVQ\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "636feacd-a780-4e12-b196-a326950a7a64",
+    "name": "Wikivoyage MediaWiki Action Authentication Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "item": [
+    {
+      "id": "85bab00b-9aeb-4bc5-8491-c3efedbeb5b4",
+      "name": "Search",
+      "description": {
+        "content": "Title and full-text search across Wikivoyage travel articles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d463e132-1bd0-4b91-a4eb-e581a4bb4373",
+          "name": "Wikivoyage Core REST Full-Text Search Travel Articles",
+          "request": {
+            "name": "Wikivoyage Core REST Full-Text Search Travel Articles",
+            "description": {
+              "content": "Full-text search of Wikivoyage travel article titles and contents. Supports keyword queries across all destination guides, accommodation listings, sightseeing information, and practical travel advice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "page"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query for travel destinations or topics"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result count limit"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6ee4414-97f3-4a99-88d8-070fd682ffac",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "page"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Paris restaurants"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": [\n    {\n      \"id\": 2934,\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"excerpt\": \"string\",\n      \"matched_title\": \"string\",\n      \"description\": \"string\",\n      \"thumbnail\": {\n        \"url\": \"https://HRC.tfnlwrDHoxn6Oov9SOkHWbGXk-GtsyeqGW8CYLYe4\",\n        \"width\": 6907,\n        \"height\": 5083,\n        \"mimetype\": \"image/jpeg\"\n      }\n    },\n    {\n      \"id\": 731,\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"excerpt\": \"string\",\n      \"matched_title\": \"string\",\n      \"description\": \"string\",\n      \"thumbnail\": {\n        \"url\": \"https://vwrETTcZPtySmdOnaqipVEUavecb.dvlbSjr5AlHdvvGttGFnO0kwC+wSYv+OqxsDVdmvqerhX\",\n        \"width\": 807,\n        \"height\": 7736,\n        \"mimetype\": \"image/jpeg\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfe7a0c3-e4b7-4829-bb77-8331529d3e46",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "page"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Paris restaurants"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97f34941-2d8f-4213-8c69-37d1d320b12b",
+          "name": "Wikivoyage Core REST Autocomplete Destination Title Search",
+          "request": {
+            "name": "Wikivoyage Core REST Autocomplete Destination Title Search",
+            "description": {
+              "content": "Auto-complete search of Wikivoyage travel article titles by prefix match. Useful for building destination lookup interfaces and travel search apps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                "title"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Destination title prefix for autocomplete"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result count limit"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4722809-ca7c-4b07-8edc-6ef9bb3c82d0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Par"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": [\n    {\n      \"id\": 6183,\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"excerpt\": \"string\",\n      \"matched_title\": \"string\",\n      \"description\": \"string\",\n      \"thumbnail\": {\n        \"url\": \"https://IKikIPhBtOwmyRQvEZdDW.fcVasRlvpc0YkQL\",\n        \"width\": 7784,\n        \"height\": 3934,\n        \"mimetype\": \"image/jpeg\"\n      }\n    },\n    {\n      \"id\": 2098,\n      \"key\": \"string\",\n      \"title\": \"string\",\n      \"excerpt\": \"string\",\n      \"matched_title\": \"string\",\n      \"description\": \"string\",\n      \"thumbnail\": {\n        \"url\": \"https://prhzijOeoKje.rlvwh2+8gqsTYDkslIfAJqwU.t+i05klInRuelDSLYI5WhDtSyeB5hOHq6qyqoO7JQ\",\n        \"width\": 7322,\n        \"height\": 9610,\n        \"mimetype\": \"image/jpeg\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1412ee4c-5c68-4251-aa6f-f96ca878f571",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "Par"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "550bf164-c7f3-40b9-b854-7e06c683914e",
+    "name": "Wikivoyage MediaWiki Action Authentication Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

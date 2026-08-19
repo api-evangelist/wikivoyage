@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "e2502213-aeac-440e-b05b-719632e19f01",
+      "name": "History",
+      "description": {
+        "content": "Travel article revision history and edit statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b8ec814-2699-47dd-990d-4f6dfe01b3d7",
+          "name": "Wikivoyage Core REST Get Travel Article Revision History",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Article Revision History",
+            "description": {
+              "content": "Retrieve the full revision history for a Wikivoyage travel article, enabling tracking of how travel information evolves over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "history"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "older_than",
+                  "value": "<integer>",
+                  "description": "Return revisions older than this ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "newer_than",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6b628bf-c64b-4d62-91c4-21bc02d53fbb",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "older_than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "newer_than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"revisions\": [\n    {\n      \"id\": 5234567,\n      \"page\": {\n        \"id\": 1972,\n        \"title\": \"string\"\n      },\n      \"size\": 5889,\n      \"minor\": false,\n      \"timestamp\": \"1979-11-29T05:49:44.961Z\",\n      \"content_model\": \"wikitext\",\n      \"license\": {\n        \"url\": \"https://hIALjiHhtgFF.msiec,hB5Bm..cdJegpBoiOkn5Yblvm2dcT0mJk0x9X+wBCVVKAB2B,2JCYDf6W-kr+kmZKI-V6YDjQ2rQf0QeQZ\",\n        \"title\": \"string\"\n      },\n      \"user\": {\n        \"id\": 3521,\n        \"name\": \"TravelContributor\"\n      },\n      \"comment\": \"string\",\n      \"delta\": 1123\n    },\n    {\n      \"id\": 5234567,\n      \"page\": {\n        \"id\": 7968,\n        \"title\": \"string\"\n      },\n      \"size\": 4703,\n      \"minor\": true,\n      \"timestamp\": \"1978-09-23T09:37:44.913Z\",\n      \"content_model\": \"wikitext\",\n      \"license\": {\n        \"url\": \"https://CRKIufKgAHGqdNlgOtXfF.qhcwgGkByhG,kZ8WT8efHVK+vir7Rj.7s5FRjBMmBRCvjGXseZ-cUagF4YCL\",\n        \"title\": \"string\"\n      },\n      \"user\": {\n        \"id\": 3132,\n        \"name\": \"TravelContributor\"\n      },\n      \"comment\": \"string\",\n      \"delta\": 1909\n    }\n  ],\n  \"latest\": \"http://xookWViRW.uugA2M2V9OzKiUUvJ\",\n  \"older\": \"https://SUnFzJGjFTkCpBsxNNOHDJNldfeqpnSi.oulo2bUzYKr5bFlavR5YPn8gAyezbXxKLamYO-IUzY0scapDE7AJBzfmQNcSdoB\",\n  \"newer\": \"https://McSJyqLLGLNvvbiwUDZByJdwqPs.tdQM9VsIgGSPiR.dPEnqLxOar.JLWJPxmw0M\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "797c6f52-2e51-46e6-bbe8-52347e678c54",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "older_than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "newer_than",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "011320f3-7deb-4980-86e3-5603b54885bb",
+          "name": "Wikivoyage Core REST Get Edit Statistics for a Travel Article",
+          "request": {
+            "name": "Wikivoyage Core REST Get Edit Statistics for a Travel Article",
+            "description": {
+              "content": "Get edit count statistics for a Wikivoyage travel article by category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "page",
+                ":title",
+                "history",
+                "counts",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) URL-encoded travel article title"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Type of count to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71ec89dc-dfd0-465d-86be-ef217f0953a8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "history",
+                    "counts",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Type of count to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3992,\n  \"limit\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0bb8f14-6e37-4a01-96c6-9ce67856e2df",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "page",
+                    ":title",
+                    "history",
+                    "counts",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) URL-encoded travel article title"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Type of count to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c98c4179-e6dc-43e5-9252-7436e7cc6d14",
+    "name": "Wikivoyage MediaWiki Action Authentication History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

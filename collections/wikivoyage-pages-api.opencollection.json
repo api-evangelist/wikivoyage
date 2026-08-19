@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Pages API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Article Source and Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              },
+              {
+                "name": "redirect",
+                "value": "",
+                "type": "query",
+                "description": "Whether to resolve redirects"
+              }
+            ]
+          },
+          "docs": "Retrieve a Wikivoyage travel article including its wikitext source and metadata. Returns the article's current revision along with page ID, title, license, and a link to the rendered HTML version."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Update or Create a Travel Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://en.wikivoyage.org/w/page/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing Wikivoyage travel article, or create one if it does not exist. Uses optimistic concurrency via latest.id to prevent edit conflicts."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Article Metadata Without Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/bare",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata about a travel article including a link to its rendered HTML, without fetching the full content."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Article as HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/html",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ]
+          },
+          "docs": "Retrieve the rendered HTML for a Wikivoyage travel article destination page."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Article Metadata and HTML",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/page/:title/with_html",
+            "params": [
+              {
+                "name": "title",
+                "value": "Paris",
+                "type": "path",
+                "description": "URL-encoded travel article title"
+              }
+            ]
+          },
+          "docs": "Retrieve travel article metadata together with rendered HTML in a single response. Useful for building travel apps that need both structured metadata and rendered content."
+        },
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Create a New Travel Article",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://en.wikivoyage.org/w/page",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new Wikivoyage travel guide article. Requires OAuth bearer token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

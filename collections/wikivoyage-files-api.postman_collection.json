@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "6949415b-f288-4107-981f-57fda77de280",
+      "name": "Files",
+      "description": {
+        "content": "Media file metadata for travel images and maps",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0197afd-1038-4fe8-8ad9-14acaf52069b",
+          "name": "Wikivoyage Core REST Get Travel Image File Metadata",
+          "request": {
+            "name": "Wikivoyage Core REST Get Travel Image File Metadata",
+            "description": {
+              "content": "Retrieve metadata for a media file used in Wikivoyage, including download URLs at multiple sizes. Travel images are hosted on Wikimedia Commons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                ":title"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "title",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc67d511-f107-4b43-b239-2cf7aade30e2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"File:Paris_banner_Sacre-Coeur.jpg\",\n  \"file_description_url\": \"http://IbEvhKy.ngzm9ZlSn.muQKIN5-p.ODABdiYWuPK5HxFbDRp2v\",\n  \"latest\": {\n    \"timestamp\": \"2004-05-11T03:34:56.759Z\",\n    \"user\": {\n      \"id\": 4616,\n      \"name\": \"string\"\n    }\n  },\n  \"preferred\": {\n    \"mediatype\": \"BITMAP\",\n    \"size\": 7972,\n    \"width\": 991,\n    \"height\": 9147,\n    \"url\": \"http://pgoIoflFz.rlJCMfPk6wFudHi7wRFAgI+\"\n  },\n  \"original\": {\n    \"mediatype\": \"string\",\n    \"size\": 7656,\n    \"width\": 9464,\n    \"height\": 8920,\n    \"url\": \"http://uu.hgbxY-iCPLKFgrWC5uC6U-H07Cw6lbdkwA0bNDmevX2z1ynkrP,6ob6ArX1QcbAw0ycw\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b52684e-8fcf-4b90-a75b-493748b28a8f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":title"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "title",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorKey\": \"string\",\n  \"messageTranslations\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7ab0d9e6-4f5b-439f-8fb8-3e1ec7ead35d",
+    "name": "Wikivoyage MediaWiki Action Authentication Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1114 @@
+{
+  "item": [
+    {
+      "id": "5baad639-3093-4308-a86f-9c17c91a2d23",
+      "name": "Upload",
+      "description": {
+        "content": "File upload (action=upload)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a3a081fa-dbaa-49cf-83fa-d7a615f981cb",
+          "name": "Wikivoyage MediaWiki Action API Dispatch (POST)",
+          "request": {
+            "name": "Wikivoyage MediaWiki Action API Dispatch (POST)",
+            "description": {
+              "content": "Generic dispatch endpoint for write operations on Wikivoyage. Use ?action=edit to create/modify travel guide articles, ?action=upload for images, ?action=login or ?action=clientlogin to authenticate. All write operations require a CSRF token from action=query&meta=tokens. POSTs are not cached - use them for writes only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api.php"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) CSRF token from query&meta=tokens"
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "Travel article title for edit/move/delete/protect"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageid",
+                  "value": "<integer>",
+                  "description": "Alternative to title"
+                },
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "Full wikitext content for action=edit"
+                },
+                {
+                  "disabled": false,
+                  "key": "appendtext",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prependtext",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "summary",
+                  "value": "<string>",
+                  "description": "Edit summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "basetimestamp",
+                  "value": "<dateTime>",
+                  "description": "Timestamp of base revision for edit conflict detection"
+                },
+                {
+                  "disabled": false,
+                  "key": "starttimestamp",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "bot",
+                  "value": "<boolean>",
+                  "description": "Mark as bot edit (requires bot right)"
+                },
+                {
+                  "disabled": false,
+                  "key": "minor",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createonly",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nocreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lgname",
+                  "value": "<string>",
+                  "description": "Login username (action=login)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lgpassword",
+                  "value": "<string>",
+                  "description": "Login password (action=login)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lgtoken",
+                  "value": "<string>",
+                  "description": "Login token"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>",
+                  "description": "Destination filename for action=upload"
+                },
+                {
+                  "disabled": false,
+                  "key": "file",
+                  "value": "<binary>",
+                  "description": "File contents for action=upload (multipart)"
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "Source URL for action=upload (sideload)"
+                },
+                {
+                  "disabled": false,
+                  "key": "comment",
+                  "value": "<string>",
+                  "description": "Upload comment"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Pipe-separated change tags"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "93c0b1f8-4925-4d8b-9b45-f4a8317b5713",
+              "name": "Action result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "edit"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) CSRF token from query&meta=tokens",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Travel article title for edit/move/delete/protect",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative to title",
+                        "type": "text/plain"
+                      },
+                      "key": "pageid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Full wikitext content for action=edit",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "appendtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prependtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Edit summary",
+                        "type": "text/plain"
+                      },
+                      "key": "summary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Timestamp of base revision for edit conflict detection",
+                        "type": "text/plain"
+                      },
+                      "key": "basetimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "starttimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Mark as bot edit (requires bot right)",
+                        "type": "text/plain"
+                      },
+                      "key": "bot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "minor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "createonly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nocreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login username (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login password (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgpassword",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login token",
+                        "type": "text/plain"
+                      },
+                      "key": "lgtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination filename for action=upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File contents for action=upload (multipart)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source URL for action=upload (sideload)",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Upload comment",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated change tags",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchcomplete\": \"string\",\n  \"continue\": {},\n  \"query\": {},\n  \"parse\": {},\n  \"edit\": {},\n  \"login\": {},\n  \"error\": {\n    \"code\": \"ratelimited\",\n    \"info\": \"string\",\n    \"*\": \"string\",\n    \"docref\": \"string\"\n  },\n  \"warnings\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f63f1461-670c-4cab-8372-b5279dedc1b8",
+              "name": "Authentication required or invalid token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "edit"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) CSRF token from query&meta=tokens",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Travel article title for edit/move/delete/protect",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative to title",
+                        "type": "text/plain"
+                      },
+                      "key": "pageid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Full wikitext content for action=edit",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "appendtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prependtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Edit summary",
+                        "type": "text/plain"
+                      },
+                      "key": "summary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Timestamp of base revision for edit conflict detection",
+                        "type": "text/plain"
+                      },
+                      "key": "basetimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "starttimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Mark as bot edit (requires bot right)",
+                        "type": "text/plain"
+                      },
+                      "key": "bot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "minor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "createonly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nocreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login username (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login password (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgpassword",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login token",
+                        "type": "text/plain"
+                      },
+                      "key": "lgtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination filename for action=upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File contents for action=upload (multipart)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source URL for action=upload (sideload)",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Upload comment",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated change tags",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac1eb8a6-0c00-4b34-8b3e-5738f4cbe4ee",
+              "name": "Permission denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "edit"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) CSRF token from query&meta=tokens",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Travel article title for edit/move/delete/protect",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative to title",
+                        "type": "text/plain"
+                      },
+                      "key": "pageid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Full wikitext content for action=edit",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "appendtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prependtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Edit summary",
+                        "type": "text/plain"
+                      },
+                      "key": "summary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Timestamp of base revision for edit conflict detection",
+                        "type": "text/plain"
+                      },
+                      "key": "basetimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "starttimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Mark as bot edit (requires bot right)",
+                        "type": "text/plain"
+                      },
+                      "key": "bot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "minor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "createonly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nocreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login username (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login password (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgpassword",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login token",
+                        "type": "text/plain"
+                      },
+                      "key": "lgtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination filename for action=upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File contents for action=upload (multipart)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source URL for action=upload (sideload)",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Upload comment",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated change tags",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11c61c77-7d6d-4d7a-aa0e-cc7c04454163",
+              "name": "Rate limited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api.php"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "edit"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) CSRF token from query&meta=tokens",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Travel article title for edit/move/delete/protect",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Alternative to title",
+                        "type": "text/plain"
+                      },
+                      "key": "pageid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Full wikitext content for action=edit",
+                        "type": "text/plain"
+                      },
+                      "key": "text",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "appendtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "prependtext",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Edit summary",
+                        "type": "text/plain"
+                      },
+                      "key": "summary",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Timestamp of base revision for edit conflict detection",
+                        "type": "text/plain"
+                      },
+                      "key": "basetimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "starttimestamp",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Mark as bot edit (requires bot right)",
+                        "type": "text/plain"
+                      },
+                      "key": "bot",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "minor",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "createonly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "nocreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login username (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgname",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login password (action=login)",
+                        "type": "text/plain"
+                      },
+                      "key": "lgpassword",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Login token",
+                        "type": "text/plain"
+                      },
+                      "key": "lgtoken",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination filename for action=upload",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File contents for action=upload (multipart)",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source URL for action=upload (sideload)",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Upload comment",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Pipe-separated change tags",
+                        "type": "text/plain"
+                      },
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://en.wikivoyage.org/w",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9631547f-5c44-42f1-9d07-96acd964a120",
+    "name": "Wikivoyage MediaWiki Action Authentication Upload API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.\n\nWikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.\n\nWikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.\n\nContact Support:\n Name: Wikimedia Foundation",
+      "type": "text/plain"
+    }
+  }
+}

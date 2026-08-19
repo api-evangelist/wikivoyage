@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Wikivoyage MediaWiki Action Authentication Files API",
+    "version": "1.47"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Wikivoyage Core REST Get Travel Image File Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://en.wikivoyage.org/w/file/:title",
+            "params": [
+              {
+                "name": "title",
+                "value": "File:Paris_banner_Sacre-Coeur.jpg",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for a media file used in Wikivoyage, including download URLs at multiple sizes. Travel images are hosted on Wikimedia Commons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
