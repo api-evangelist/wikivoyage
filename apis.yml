@@ -104,6 +104,8 @@ apis:
   humanURL: https://www.mediawiki.org/wiki/API:Main_page
   baseURL: https://en.wikivoyage.org/w/api.php
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
