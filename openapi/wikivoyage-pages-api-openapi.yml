@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Wikivoyage MediaWiki Action Authentication Pages API
   description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
@@ -223,6 +223,37 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
+    UpdatePageRequest:
+      type: object
+      required:
+      - source
+      - comment
+      properties:
+        source:
+          type: string
+          description: Updated wikitext source for the travel article
+        comment:
+          type: string
+          description: Edit summary describing the travel information update
+        content_model:
+          type: string
+          example: wikitext
+        latest:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Latest revision ID for optimistic concurrency
+        token:
+          type: string
+          description: CSRF token from Action API
     CreatePageRequest:
       type: object
       required:
@@ -248,37 +279,6 @@ components:
         token:
           type: string
           description: CSRF token from Action API
-    UpdatePageRequest:
-      type: object
-      required:
-      - source
-      - comment
-      properties:
-        source:
-          type: string
-          description: Updated wikitext source for the travel article
-        comment:
-          type: string
-          description: Edit summary describing the travel information update
-        content_model:
-          type: string
-          example: wikitext
-        latest:
-          type: object
-          properties:
-            id:
-              type: integer
-              description: Latest revision ID for optimistic concurrency
-        token:
-          type: string
-          description: CSRF token from Action API
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
     Page:
       type: object
       description: A Wikivoyage travel article page object.

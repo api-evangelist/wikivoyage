@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Wikivoyage MediaWiki Action Authentication Files API
   description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
@@ -63,6 +63,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
     File:
       type: object
       description: A travel image or map file descriptor.
@@ -115,13 +122,6 @@ components:
             url:
               type: string
               format: uri
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http

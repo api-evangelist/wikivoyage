@@ -35,6 +35,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "wikivoyage-authentication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-edit-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-files-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-history-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-links-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-meta-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-pages-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-parse-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-patrol-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-query-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-revisions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-transforms-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-upload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

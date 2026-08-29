@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Wikivoyage MediaWiki Action Authentication Edit API
   description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
@@ -106,6 +106,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ActionApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: ratelimited
+        info:
+          type: string
+          description: Human-readable error description
+        '*':
+          type: string
+          description: Legacy error text
+        docref:
+          type: string
+          description: Pointer to docs for this error class
     ActionResult:
       type: object
       description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
@@ -132,21 +147,6 @@ components:
           $ref: '#/components/schemas/ActionApiError'
         warnings:
           type: object
-    ActionApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          example: ratelimited
-        info:
-          type: string
-          description: Human-readable error description
-        '*':
-          type: string
-          description: Legacy error text
-        docref:
-          type: string
-          description: Pointer to docs for this error class
     ActionApiWriteRequest:
       type: object
       required:

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Wikivoyage MediaWiki Action Authentication History API
   description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
@@ -126,15 +126,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    EditCounts:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Edit count of requested type
-        limit:
-          type: boolean
-          description: Whether the count was truncated
     Revision:
       type: object
       description: A travel article revision.
@@ -189,6 +180,15 @@ components:
           type: string
         messageTranslations:
           type: object
+    EditCounts:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Edit count of requested type
+        limit:
+          type: boolean
+          description: Whether the count was truncated
     HistoryResponse:
       type: object
       properties:
@@ -201,13 +201,15 @@ components:
           format: uri
           description: Link to latest revisions page
         older:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
         newer:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
   securitySchemes:
     BearerAuth:
       type: http
