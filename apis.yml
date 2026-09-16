@@ -55,34 +55,6 @@ tags:
   - MediaWiki
   - Non-Profit
 apis:
-- aid: wikivoyage:wikivoyage-authentication-api
-  name: Wikivoyage Authentication API
-  description: Login, logout, token retrieval (action=login, clientlogin, logout, query&meta=tokens)
-  humanURL: https://www.mediawiki.org/wiki/API:Main_page
-  baseURL: https://en.wikivoyage.org/w/api.php
-  tags:
-  - Authentication
-  properties:
-  - type: OpenAPI
-    url: openapi/wikivoyage-authentication-api-openapi.yml
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:Main_page
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
-  - type: Tutorials
-    url: https://www.mediawiki.org/wiki/API:Tutorial
-  - type: Etiquette
-    url: https://www.mediawiki.org/wiki/API:Etiquette
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:REST_API/Reference
-  - type: APIPortal
-    url: https://api.wikimedia.org/wiki/Core_REST_API
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:RestSandbox
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
 - aid: wikivoyage:wikivoyage-edit-api
   name: Wikivoyage Edit API
   description: Create/modify travel guide content (action=edit)
@@ -197,34 +169,6 @@ apis:
     url: https://en.wikivoyage.org/wiki/Special:RestSandbox
   - type: JSONLDContext
     url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
-- aid: wikivoyage:wikivoyage-meta-api
-  name: Wikivoyage Meta API
-  description: Metadata operations (action=opensearch, action=feedrecentchanges)
-  humanURL: https://www.mediawiki.org/wiki/API:Main_page
-  baseURL: https://en.wikivoyage.org/w/api.php
-  tags:
-  - Meta
-  properties:
-  - type: OpenAPI
-    url: openapi/wikivoyage-meta-api-openapi.yml
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:Main_page
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
-  - type: Tutorials
-    url: https://www.mediawiki.org/wiki/API:Tutorial
-  - type: Etiquette
-    url: https://www.mediawiki.org/wiki/API:Etiquette
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:REST_API/Reference
-  - type: APIPortal
-    url: https://api.wikimedia.org/wiki/Core_REST_API
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:RestSandbox
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
 - aid: wikivoyage:wikivoyage-pages-api
   name: Wikivoyage Pages API
   description: Travel article metadata, HTML, source, create, update
@@ -235,62 +179,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/wikivoyage-pages-api-openapi.yml
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:Main_page
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
-  - type: Tutorials
-    url: https://www.mediawiki.org/wiki/API:Tutorial
-  - type: Etiquette
-    url: https://www.mediawiki.org/wiki/API:Etiquette
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:REST_API/Reference
-  - type: APIPortal
-    url: https://api.wikimedia.org/wiki/Core_REST_API
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:RestSandbox
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
-- aid: wikivoyage:wikivoyage-parse-api
-  name: Wikivoyage Parse API
-  description: Wikitext parsing (action=parse) for travel article content
-  humanURL: https://www.mediawiki.org/wiki/API:Main_page
-  baseURL: https://en.wikivoyage.org/w/api.php
-  tags:
-  - Parse
-  properties:
-  - type: OpenAPI
-    url: openapi/wikivoyage-parse-api-openapi.yml
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:Main_page
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
-  - type: Tutorials
-    url: https://www.mediawiki.org/wiki/API:Tutorial
-  - type: Etiquette
-    url: https://www.mediawiki.org/wiki/API:Etiquette
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:REST_API/Reference
-  - type: APIPortal
-    url: https://api.wikimedia.org/wiki/Core_REST_API
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:RestSandbox
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
-- aid: wikivoyage:wikivoyage-patrol-api
-  name: Wikivoyage Patrol API
-  description: Mark edits as patrolled (action=patrol)
-  humanURL: https://www.mediawiki.org/wiki/API:Main_page
-  baseURL: https://en.wikivoyage.org/w/api.php
-  tags:
-  - Patrol
-  properties:
-  - type: OpenAPI
-    url: openapi/wikivoyage-patrol-api-openapi.yml
   - type: Documentation
     url: https://www.mediawiki.org/wiki/API:Main_page
   - type: Sandbox
@@ -403,34 +291,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/wikivoyage-transforms-api-openapi.yml
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:Main_page
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:ApiSandbox
-  - type: Tutorials
-    url: https://www.mediawiki.org/wiki/API:Tutorial
-  - type: Etiquette
-    url: https://www.mediawiki.org/wiki/API:Etiquette
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-action-api-context.jsonld
-  - type: Documentation
-    url: https://www.mediawiki.org/wiki/API:REST_API/Reference
-  - type: APIPortal
-    url: https://api.wikimedia.org/wiki/Core_REST_API
-  - type: Sandbox
-    url: https://en.wikivoyage.org/wiki/Special:RestSandbox
-  - type: JSONLDContext
-    url: json-ld/wikivoyage-mediawiki-core-rest-context.jsonld
-- aid: wikivoyage:wikivoyage-upload-api
-  name: Wikivoyage Upload API
-  description: File upload (action=upload)
-  humanURL: https://www.mediawiki.org/wiki/API:Main_page
-  baseURL: https://en.wikivoyage.org/w/api.php
-  tags:
-  - Upload
-  properties:
-  - type: OpenAPI
-    url: openapi/wikivoyage-upload-api-openapi.yml
   - type: Documentation
     url: https://www.mediawiki.org/wiki/API:Main_page
   - type: Sandbox
