@@ -1,32 +1,32 @@
 openapi: 3.2.0
 info:
-  title: Wikivoyage MediaWiki Action Authentication Search API
-  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
-
-
-    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
-
-
-    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
-  version: '1.47'
+  title: Wikivoyage MediaWiki Core REST Search API
+  description: MediaWiki Core REST API exposed by Wikivoyage under /w/rest.php/v1/.
+  version: 1.0.0
   x-generated-from: documentation
-  x-source-url: https://www.mediawiki.org/wiki/API:Main_page
+  x-source-url: https://www.mediawiki.org/wiki/API:REST_API/Reference
   x-last-validated: '2026-06-13'
   contact:
     name: Wikimedia Foundation
-    url: https://www.mediawiki.org/wiki/API:Etiquette
+    url: https://api.wikimedia.org/wiki/Core_REST_API
   license:
     name: CC BY-SA 4.0
     url: https://creativecommons.org/licenses/by-sa/4.0/
 servers:
-- url: https://en.wikivoyage.org/w
+- url: https://en.wikivoyage.org/w/rest.php/v1
   description: English Wikivoyage
-- url: https://{lang}.wikivoyage.org/w
+- url: https://{lang}.wikivoyage.org/w/rest.php/v1
   description: Per-language Wikivoyage
   variables:
     lang:
       default: en
-      description: Language code (en, de, fr, es, it, pt, ru, zh, ...)
+      description: Language subdomain (en, de, fr, es, it, pt, ru, zh, ...)
+- url: https://api.wikimedia.org/core/v1/wikivoyage/{lang}
+  description: Wikimedia API Gateway equivalent of the Core REST API
+  variables:
+    lang:
+      default: en
+      description: Language code
 tags:
 - name: Search
   description: Title and full-text search across Wikivoyage travel articles
@@ -111,13 +111,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
     SearchResponse:
       type: object
       properties:
@@ -161,13 +154,15 @@ components:
             mimetype:
               type: string
               example: image/jpeg
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token from meta.wikimedia.org
-    CookieAuth:
-      type: apiKey
-      in: cookie
-      name: wikivoyagewikiUserID
-      description: Session cookie obtained via action=login or action=clientlogin
+      description: OAuth 2.0 bearer token issued via api.wikimedia.org. Required for write operations on Wikivoyage travel articles.

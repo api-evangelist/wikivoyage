@@ -1,13 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Wikivoyage MediaWiki Action Authentication Edit API
-  description: 'The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php. All operations dispatch via the ?action= query parameter. The API supports JSON, XML, and PHP serialization; JSON is the recommended format.
-
-
-    Wikivoyage covers travel destinations worldwide and the Action API enables retrieval of travel destination articles, accommodation listings, sightseeing information, and practical travel advice. Supports both anonymous reads and authenticated writes via OAuth 2.0.
-
-
-    Wikimedia Foundation API guidelines require a contactable User-Agent header, serial (not parallel) calls for bulk work, and the maxlag parameter for automated clients.'
+  title: Wikivoyage MediaWiki Action Edit API
+  description: The MediaWiki Action API is the primary programmatic interface for Wikivoyage, exposed at https://en.wikivoyage.org/w/api.php.
   version: '1.47'
   x-generated-from: documentation
   x-source-url: https://www.mediawiki.org/wiki/API:Main_page
@@ -121,32 +115,6 @@ components:
         docref:
           type: string
           description: Pointer to docs for this error class
-    ActionResult:
-      type: object
-      description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
-      properties:
-        batchcomplete:
-          type: string
-          description: Present when the batch completed in one round-trip
-        continue:
-          type: object
-          description: Continuation tokens for paginated responses
-        query:
-          type: object
-          description: Result body for action=query
-        parse:
-          type: object
-          description: Result body for action=parse
-        edit:
-          type: object
-          description: Result body for action=edit
-        login:
-          type: object
-          description: Result body for action=login
-        error:
-          $ref: '#/components/schemas/ActionApiError'
-        warnings:
-          type: object
     ActionApiWriteRequest:
       type: object
       required:
@@ -215,6 +183,32 @@ components:
         tags:
           type: string
           description: Pipe-separated change tags
+    ActionResult:
+      type: object
+      description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
+      properties:
+        batchcomplete:
+          type: string
+          description: Present when the batch completed in one round-trip
+        continue:
+          type: object
+          description: Continuation tokens for paginated responses
+        query:
+          type: object
+          description: Result body for action=query
+        parse:
+          type: object
+          description: Result body for action=parse
+        edit:
+          type: object
+          description: Result body for action=edit
+        login:
+          type: object
+          description: Result body for action=login
+        error:
+          $ref: '#/components/schemas/ActionApiError'
+        warnings:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http

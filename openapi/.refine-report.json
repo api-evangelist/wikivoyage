@@ -1,56 +1,39 @@
 {
   "provider": "wikivoyage",
   "sources": [
-    "wikivoyage-authentication-api-openapi.yml",
-    "wikivoyage-edit-api-openapi.yml",
-    "wikivoyage-files-api-openapi.yml",
-    "wikivoyage-history-api-openapi.yml",
-    "wikivoyage-links-api-openapi.yml",
-    "wikivoyage-meta-api-openapi.yml",
-    "wikivoyage-pages-api-openapi.yml",
-    "wikivoyage-parse-api-openapi.yml",
-    "wikivoyage-patrol-api-openapi.yml",
-    "wikivoyage-query-api-openapi.yml",
-    "wikivoyage-revisions-api-openapi.yml",
-    "wikivoyage-search-api-openapi.yml",
-    "wikivoyage-transforms-api-openapi.yml",
-    "wikivoyage-upload-api-openapi.yml"
+    "_ae-authored/wikivoyage-mediawiki-action-api-openapi.yaml",
+    "_ae-authored/wikivoyage-mediawiki-core-rest-openapi.yaml"
   ],
   "outputs": [
-    "wikivoyage-authentication-api-openapi.yml",
     "wikivoyage-edit-api-openapi.yml",
+    "wikivoyage-query-api-openapi.yml",
     "wikivoyage-files-api-openapi.yml",
     "wikivoyage-history-api-openapi.yml",
     "wikivoyage-links-api-openapi.yml",
-    "wikivoyage-meta-api-openapi.yml",
     "wikivoyage-pages-api-openapi.yml",
-    "wikivoyage-parse-api-openapi.yml",
-    "wikivoyage-patrol-api-openapi.yml",
-    "wikivoyage-query-api-openapi.yml",
     "wikivoyage-revisions-api-openapi.yml",
     "wikivoyage-search-api-openapi.yml",
-    "wikivoyage-transforms-api-openapi.yml",
-    "wikivoyage-upload-api-openapi.yml"
+    "wikivoyage-transforms-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "wikivoyage-authentication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-edit-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-files-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-history-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-links-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-meta-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-pages-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-parse-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-patrol-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-query-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-revisions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-search-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-transforms-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "wikivoyage-upload-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wikivoyage-mediawiki-action-api-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "wikivoyage-mediawiki-action-api-openapi.yaml: multi-axis tagging (7 tags, 2 first tags, 3.50x duplication over 2 operations) \u2014 split on first tag, 2 operations narrowed",
+    "wikivoyage-mediawiki-core-rest-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "wikivoyage-edit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-revisions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wikivoyage-transforms-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
