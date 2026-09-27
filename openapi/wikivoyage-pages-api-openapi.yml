@@ -247,13 +247,6 @@ components:
         token:
           type: string
           description: CSRF token from Action API
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
     CreatePageRequest:
       type: object
       required:
@@ -328,6 +321,13 @@ components:
         html:
           type: string
           description: Rendered HTML of travel article
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http

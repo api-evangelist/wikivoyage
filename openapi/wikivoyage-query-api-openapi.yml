@@ -126,21 +126,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ActionApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          example: ratelimited
-        info:
-          type: string
-          description: Human-readable error description
-        '*':
-          type: string
-          description: Legacy error text
-        docref:
-          type: string
-          description: Pointer to docs for this error class
     ActionResult:
       type: object
       description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
@@ -167,6 +152,21 @@ components:
           $ref: '#/components/schemas/ActionApiError'
         warnings:
           type: object
+    ActionApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: ratelimited
+        info:
+          type: string
+          description: Human-readable error description
+        '*':
+          type: string
+          description: Legacy error text
+        docref:
+          type: string
+          description: Pointer to docs for this error class
   securitySchemes:
     BearerAuth:
       type: http

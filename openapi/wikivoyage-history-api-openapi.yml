@@ -173,22 +173,6 @@ components:
         delta:
           type: integer
           description: Byte delta from previous revision
-    EditCounts:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Edit count of requested type
-        limit:
-          type: boolean
-          description: Whether the count was truncated
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
     HistoryResponse:
       type: object
       properties:
@@ -210,6 +194,22 @@ components:
           - string
           - 'null'
           format: uri
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
+    EditCounts:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Edit count of requested type
+        limit:
+          type: boolean
+          description: Whether the count was truncated
   securitySchemes:
     BearerAuth:
       type: http

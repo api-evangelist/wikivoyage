@@ -218,37 +218,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    CompareResponse:
-      type: object
-      description: Comparison between two travel article revisions.
-      properties:
-        from:
-          $ref: '#/components/schemas/Revision'
-        to:
-          $ref: '#/components/schemas/Revision'
-        diff:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: integer
-                description: 0 context, 1 add line, 2 delete line, 3 in-line change, 4 moved paragraph, 5 paragraph moved into place
-              lineNumber:
-                type: integer
-              text:
-                type: string
-              offset:
-                type: object
-                properties:
-                  from:
-                    type: integer
-                  to:
-                    type: integer
-              highlightRanges:
-                type: array
-                items:
-                  type: object
     Revision:
       type: object
       description: A travel article revision.
@@ -303,6 +272,37 @@ components:
           type: string
         messageTranslations:
           type: object
+    CompareResponse:
+      type: object
+      description: Comparison between two travel article revisions.
+      properties:
+        from:
+          $ref: '#/components/schemas/Revision'
+        to:
+          $ref: '#/components/schemas/Revision'
+        diff:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: integer
+                description: 0 context, 1 add line, 2 delete line, 3 in-line change, 4 moved paragraph, 5 paragraph moved into place
+              lineNumber:
+                type: integer
+              text:
+                type: string
+              offset:
+                type: object
+                properties:
+                  from:
+                    type: integer
+                  to:
+                    type: integer
+              highlightRanges:
+                type: array
+                items:
+                  type: object
   securitySchemes:
     BearerAuth:
       type: http
