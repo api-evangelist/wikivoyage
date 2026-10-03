@@ -100,6 +100,21 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ActionApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: ratelimited
+        info:
+          type: string
+          description: Human-readable error description
+        '*':
+          type: string
+          description: Legacy error text
+        docref:
+          type: string
+          description: Pointer to docs for this error class
     ActionApiWriteRequest:
       type: object
       required:
@@ -194,21 +209,6 @@ components:
           $ref: '#/components/schemas/ActionApiError'
         warnings:
           type: object
-    ActionApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          example: ratelimited
-        info:
-          type: string
-          description: Human-readable error description
-        '*':
-          type: string
-          description: Legacy error text
-        docref:
-          type: string
-          description: Pointer to docs for this error class
   securitySchemes:
     BearerAuth:
       type: http

@@ -111,6 +111,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
     SearchResponse:
       type: object
       properties:
@@ -154,13 +161,6 @@ components:
             mimetype:
               type: string
               example: image/jpeg
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http

@@ -223,30 +223,13 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    UpdatePageRequest:
+    Error:
       type: object
-      required:
-      - source
-      - comment
       properties:
-        source:
+        errorKey:
           type: string
-          description: Updated wikitext source for the travel article
-        comment:
-          type: string
-          description: Edit summary describing the travel information update
-        content_model:
-          type: string
-          example: wikitext
-        latest:
+        messageTranslations:
           type: object
-          properties:
-            id:
-              type: integer
-              description: Latest revision ID for optimistic concurrency
-        token:
-          type: string
-          description: CSRF token from Action API
     CreatePageRequest:
       type: object
       required:
@@ -269,6 +252,30 @@ components:
         content_model:
           type: string
           example: wikitext
+        token:
+          type: string
+          description: CSRF token from Action API
+    UpdatePageRequest:
+      type: object
+      required:
+      - source
+      - comment
+      properties:
+        source:
+          type: string
+          description: Updated wikitext source for the travel article
+        comment:
+          type: string
+          description: Edit summary describing the travel information update
+        content_model:
+          type: string
+          example: wikitext
+        latest:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Latest revision ID for optimistic concurrency
         token:
           type: string
           description: CSRF token from Action API
@@ -321,13 +328,6 @@ components:
         html:
           type: string
           description: Rendered HTML of travel article
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http
