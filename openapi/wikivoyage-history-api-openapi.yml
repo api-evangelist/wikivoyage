@@ -126,13 +126,15 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
+    EditCounts:
       type: object
       properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
+        count:
+          type: integer
+          description: Edit count of requested type
+        limit:
+          type: boolean
+          description: Whether the count was truncated
     HistoryResponse:
       type: object
       properties:
@@ -154,15 +156,13 @@ components:
           - string
           - 'null'
           format: uri
-    EditCounts:
+    Error:
       type: object
       properties:
-        count:
-          type: integer
-          description: Edit count of requested type
-        limit:
-          type: boolean
-          description: Whether the count was truncated
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
     Revision:
       type: object
       description: A travel article revision.

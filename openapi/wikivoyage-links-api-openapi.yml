@@ -90,6 +90,22 @@ paths:
                       $ref: '#/components/schemas/File'
 components:
   schemas:
+    LanguageLink:
+      type: object
+      properties:
+        code:
+          type: string
+          example: de
+          description: Language code for Wikivoyage edition
+        name:
+          type: string
+          example: Deutsch
+        key:
+          type: string
+          example: Paris
+        title:
+          type: string
+          example: Paris
     File:
       type: object
       description: A travel image or map file descriptor.
@@ -142,22 +158,6 @@ components:
             url:
               type: string
               format: uri
-    LanguageLink:
-      type: object
-      properties:
-        code:
-          type: string
-          example: de
-          description: Language code for Wikivoyage edition
-        name:
-          type: string
-          example: Deutsch
-        key:
-          type: string
-          example: Paris
-        title:
-          type: string
-          example: Paris
   securitySchemes:
     BearerAuth:
       type: http

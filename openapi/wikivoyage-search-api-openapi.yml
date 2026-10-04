@@ -111,20 +111,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
-    SearchResponse:
-      type: object
-      properties:
-        pages:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResult'
     SearchResult:
       type: object
       description: A search result travel article entry.
@@ -161,6 +147,20 @@ components:
             mimetype:
               type: string
               example: image/jpeg
+    SearchResponse:
+      type: object
+      properties:
+        pages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
   securitySchemes:
     BearerAuth:
       type: http

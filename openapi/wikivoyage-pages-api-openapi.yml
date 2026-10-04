@@ -223,13 +223,6 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
     CreatePageRequest:
       type: object
       required:
@@ -255,30 +248,13 @@ components:
         token:
           type: string
           description: CSRF token from Action API
-    UpdatePageRequest:
+    Error:
       type: object
-      required:
-      - source
-      - comment
       properties:
-        source:
+        errorKey:
           type: string
-          description: Updated wikitext source for the travel article
-        comment:
-          type: string
-          description: Edit summary describing the travel information update
-        content_model:
-          type: string
-          example: wikitext
-        latest:
+        messageTranslations:
           type: object
-          properties:
-            id:
-              type: integer
-              description: Latest revision ID for optimistic concurrency
-        token:
-          type: string
-          description: CSRF token from Action API
     Page:
       type: object
       description: A Wikivoyage travel article page object.
@@ -328,6 +304,30 @@ components:
         html:
           type: string
           description: Rendered HTML of travel article
+    UpdatePageRequest:
+      type: object
+      required:
+      - source
+      - comment
+      properties:
+        source:
+          type: string
+          description: Updated wikitext source for the travel article
+        comment:
+          type: string
+          description: Edit summary describing the travel information update
+        content_model:
+          type: string
+          example: wikitext
+        latest:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: Latest revision ID for optimistic concurrency
+        token:
+          type: string
+          description: CSRF token from Action API
   securitySchemes:
     BearerAuth:
       type: http

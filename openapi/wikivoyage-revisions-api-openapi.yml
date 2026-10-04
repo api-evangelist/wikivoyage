@@ -249,6 +249,13 @@ components:
                 type: array
                 items:
                   type: object
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
     Revision:
       type: object
       description: A travel article revision.
@@ -296,13 +303,6 @@ components:
         delta:
           type: integer
           description: Byte delta from previous revision
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http

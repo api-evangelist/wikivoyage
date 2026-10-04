@@ -115,6 +115,32 @@ components:
         docref:
           type: string
           description: Pointer to docs for this error class
+    ActionResult:
+      type: object
+      description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
+      properties:
+        batchcomplete:
+          type: string
+          description: Present when the batch completed in one round-trip
+        continue:
+          type: object
+          description: Continuation tokens for paginated responses
+        query:
+          type: object
+          description: Result body for action=query
+        parse:
+          type: object
+          description: Result body for action=parse
+        edit:
+          type: object
+          description: Result body for action=edit
+        login:
+          type: object
+          description: Result body for action=login
+        error:
+          $ref: '#/components/schemas/ActionApiError'
+        warnings:
+          type: object
     ActionApiWriteRequest:
       type: object
       required:
@@ -183,32 +209,6 @@ components:
         tags:
           type: string
           description: Pipe-separated change tags
-    ActionResult:
-      type: object
-      description: Generic envelope for Action API responses. Concrete payload shape depends on action and prop/list/meta selection.
-      properties:
-        batchcomplete:
-          type: string
-          description: Present when the batch completed in one round-trip
-        continue:
-          type: object
-          description: Continuation tokens for paginated responses
-        query:
-          type: object
-          description: Result body for action=query
-        parse:
-          type: object
-          description: Result body for action=parse
-        edit:
-          type: object
-          description: Result body for action=edit
-        login:
-          type: object
-          description: Result body for action=login
-        error:
-          $ref: '#/components/schemas/ActionApiError'
-        warnings:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http

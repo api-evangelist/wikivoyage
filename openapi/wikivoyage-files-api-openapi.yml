@@ -63,6 +63,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorKey:
+          type: string
+        messageTranslations:
+          type: object
     File:
       type: object
       description: A travel image or map file descriptor.
@@ -115,13 +122,6 @@ components:
             url:
               type: string
               format: uri
-    Error:
-      type: object
-      properties:
-        errorKey:
-          type: string
-        messageTranslations:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http
