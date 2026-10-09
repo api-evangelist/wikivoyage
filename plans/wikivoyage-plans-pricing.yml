@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Wikivoyage API Plans and Pricing
 description: >-
   Wikivoyage, operated by the Wikimedia Foundation, provides its MediaWiki Action API
@@ -43,3 +47,16 @@ plans:
         url: https://meta.wikimedia.org/wiki/Special:OAuthConsumerRegistration/propose
       - name: Wikivoyage Database Dumps
         url: https://dumps.wikimedia.org/enwikivoyage/
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Free / Open Access
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
